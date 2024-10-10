@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/layout"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="20dp"
+        tools:context=".Vista.Ingresos">
+
+        <TextView
+            android:id="@+id/txtUsuario"
+            style="@style/TxtNegroMedianoItalic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/usuario"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wrapperinputUsuario"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtUsuario"
+            app:layout_constraintStart_toStartOf="@id/txtUsuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtinputUsuario"
+                style="@style/EstiloEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/txtNombres"
+            style="@style/TxtNegroMedianoItalic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/nombres"
+            app:layout_constraintTop_toBottomOf ="@id/wrapperinputUsuario"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wrapperinputNombres"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtNombres"
+            app:layout_constraintStart_toStartOf="@id/txtNombres"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtinputNombres"
+                style="@style/EstiloEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/txtApellidos"
+            style="@style/TxtNegroMedianoItalic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/apellidos"
+            app:layout_constraintTop_toBottomOf ="@id/wrapperinputNombres"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wrapperinputApellidos"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtApellidos"
+            app:layout_constraintStart_toStartOf="@id/txtApellidos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtinputApellidos"
+                style="@style/EstiloEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtDoc"
+            style="@style/TxtNegroMedianoItalic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/doc"
+            app:layout_constraintTop_toBottomOf ="@id/wrapperinputApellidos"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wrapperinputDoc"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtDoc"
+            app:layout_constraintStart_toStartOf="@id/txtDoc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtinputDoc"
+                style="@style/EstiloEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtTel"
+            style="@style/TxtNegroMedianoItalic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/tel"
+            app:layout_constraintTop_toBottomOf ="@id/wrapperinputDoc"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wrapperinputTel"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtTel"
+            app:layout_constraintStart_toStartOf="@id/txtTel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtinputTel"
+                style="@style/EstiloEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtMail"
+            style="@style/TxtNegroMedianoItalic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/mail"
+            app:layout_constraintTop_toBottomOf ="@id/wrapperinputTel"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wrapperinputMail"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtMail"
+            app:layout_constraintStart_toStartOf="@id/txtMail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtinputMail"
+                style="@style/EstiloEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnCambiarCon"
+            style="@style/EstiloBordeVerde"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cambiar_con"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/wrapperinputMail"
+            app:layout_constraintStart_toStartOf="@id/wrapperinputMail"
+            app:layout_constraintEnd_toStartOf="@id/btnBorrarPerf"/>
+
+        <Button
+            android:id="@+id/btnBorrarPerf"
+            style="@style/EstiloBordeAmarillo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/borrar_pf"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/wrapperinputMail"
+            app:layout_constraintStart_toEndOf="@id/btnCambiarCon"
+            app:layout_constraintEnd_toEndOf="@id/wrapperinputMail"/>
+
+        <Button
+            android:id="@+id/btnGuardar"
+            style="@style/EstiloBtnVerde"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/guardar_cam"
+            android:textSize="20sp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/btnCambiarCon"
+            app:layout_constraintStart_toStartOf="@id/btnCambiarCon"
+            app:layout_constraintEnd_toEndOf="@id/btnBorrarPerf"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="textInputStyle">@style/EstiloInput</item>
+        <item name="colorPrimary">@color/verde_claro</item>
+        <item name="colorPrimaryDark">@color/verde_oscuro</item>
+        <item name="colorAccent">@color/amarillo_oscuro</item>
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+    </style>
+
+    <style name="EstiloBtnVerde" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btn_verde</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="EstiloBtnAmarillo" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btn_amarillo</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="EstiloBordeAmarillo" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btn_borde_amarillo</item>
+        <item name="android:textColor">@color/amarillo_oscuro</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="EstiloBordeVerde" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btn_borde_verde</item>
+        <item name="android:textColor">@color/verde_oscuro</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TxtAmarilloGrandeNegrita">
+        <item name="android:textColor">@color/amarillo_oscuro</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TxtVerdeGrandeNegrita">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TxtVerdeGrande">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtVerdePequenoItalic">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtVerdePequenoNegrita">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic|bold</item>
+    </style>
+
+    <style name="TxtVerdePequeno">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TxtVerdeMedianoItalic">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtVerdeMedianoItalicNegrita">
+        <item name="android:textColor">@color/verde_claro</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">italic|bold</item>
+    </style>
+
+    <style name="TxtNegroPequenoItalic">
+        <item name="android:textColor">@color/texto1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtNegroMedianoItalic">
+        <item name="android:textColor">@color/texto1</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtNegroMedianoItalic2">
+        <item name="android:textColor">@color/texto1</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtNegroGrande">
+        <item name="android:textColor">@color/texto1</item>
+        <item name="android:textSize">35sp</item>
+    </style>
+
+    <style name="TxtNegroGrande2">
+        <item name="android:textColor">@color/texto1</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="TxtGrisMedianoItalic">
+        <item name="android:textColor">@color/texto2</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+
+    <style name="TxtGrisPequenoItalic">
+        <item name="android:textColor">@color/texto2</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtGrisGrande">
+        <item name="android:textColor">@color/texto2</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtBlancoMedianoItalic">
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TxtBlancoMediano">
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TxtBlancoGrandeItalic">
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="EstiloInput">
+        <item name="android:textColorHint">@color/texto2</item> <!-- Gris -->
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="EstiloEditText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/texto2</item>
+        <item name="hintAnimationEnabled">false</item>
+    </style>
+
+
+    <style name="Theme.NavigationDrawer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/verde_claro</item>
+        <item name="colorPrimaryVariant">
+            @color/verde_oscuro
+        </item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/amarillo_claro</item>
+        <item name="colorSecondaryVariant">
+            @color/amarillo_oscuro
+        </item>
+        <item name="colorOnSecondary">@color/texto1</item>
+        <!-- Status bar color. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.NavigationDrawer.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.NavigationDrawer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.NavigationDrawer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="button_card" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/verde_oscuro</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NavigationViewTextStyle" parent="TextAppearance.AppCompat">
+        <!-- Modifica el color, tamaño, etc., según tus preferencias -->
+        <item name="android:textColor">@color/texto2</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

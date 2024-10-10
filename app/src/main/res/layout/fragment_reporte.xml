@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".Vista.Ingresos"
+        android:paddingBottom="64dp">
+
+
+        <TextView
+            android:id="@+id/txtSemanal"
+            android:text="@string/semanal"
+            style="@style/TxtVerdeMedianoItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="16dp"
+            />
+
+
+        <ImageButton
+            android:id="@+id/btonAtrasSem"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:src="@drawable/atras"
+            android:background="@drawable/bg_btn_borde_verde"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/txtSemanal"
+            app:layout_constraintEnd_toStartOf="@id/btonAdelanteSem"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/flecha_atras" />
+
+
+        <ImageButton
+            android:id="@+id/btonAdelanteSem"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:src="@drawable/adelante"
+            android:background="@drawable/bg_btn_borde_verde"
+            app:layout_constraintBottom_toBottomOf="@id/txtSemanal"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="32dp"
+            android:contentDescription="@string/flecha_adelante" />
+
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/graficoLineasSemanal"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btonAdelanteSem"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            />
+
+        <TextView
+            android:id="@+id/noDataSem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/graficoLineasSemanal"
+            app:layout_constraintEnd_toEndOf="@id/graficoLineasSemanal"
+            app:layout_constraintTop_toTopOf="@id/graficoLineasSemanal"
+            app:layout_constraintBottom_toBottomOf="@id/graficoLineasSemanal"
+            android:text="@string/no_data"
+            android:gravity="center"
+            style="@style/TxtGrisPequenoItalic"
+            android:layout_margin="48dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/descSem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/graficoLineasSemanal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="@string/texto_prueba"
+            style="@style/TxtGrisPequenoItalic"
+            />
+
+
+
+        <TextView
+            android:id="@+id/txtMensual"
+            android:text="@string/mensual"
+            style="@style/TxtVerdeMedianoItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/descSem"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="16dp"
+            />
+
+
+        <ImageButton
+            android:id="@+id/btonAtrasMes"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:src="@drawable/atras"
+            android:background="@drawable/bg_btn_borde_verde"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/txtMensual"
+            app:layout_constraintEnd_toStartOf="@id/btonAdelanteMes"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/flecha_atras" />
+
+
+        <ImageButton
+            android:id="@+id/btonAdelanteMes"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:src="@drawable/adelante"
+            android:background="@drawable/bg_btn_borde_verde"
+            app:layout_constraintBottom_toBottomOf="@id/txtMensual"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="32dp"
+            android:contentDescription="@string/flecha_adelante" />
+
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/graficoLineasMensual"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btonAdelanteMes"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            />
+
+        <TextView
+            android:id="@+id/noDataMes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/graficoLineasMensual"
+            app:layout_constraintEnd_toEndOf="@id/graficoLineasMensual"
+            app:layout_constraintTop_toTopOf="@id/graficoLineasMensual"
+            app:layout_constraintBottom_toBottomOf="@id/graficoLineasMensual"
+            android:text="@string/no_data"
+            android:gravity="center"
+            style="@style/TxtGrisPequenoItalic"
+            android:layout_margin="48dp"
+            android:visibility="invisible"/>
+
+
+        <TextView
+            android:id="@+id/descMes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/graficoLineasMensual"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="@string/texto_prueba"
+            style="@style/TxtGrisPequenoItalic"
+            />
+
+        <TextView
+            android:id="@+id/txtAnual"
+            android:text="@string/anual"
+            style="@style/TxtVerdeMedianoItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/descMes"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="16dp"
+            />
+
+
+        <ImageButton
+            android:id="@+id/btonAtrasAn"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:src="@drawable/atras"
+            android:background="@drawable/bg_btn_borde_verde"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/txtAnual"
+            app:layout_constraintEnd_toStartOf="@id/btonAdelanteAn"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/flecha_atras" />
+
+
+        <ImageButton
+            android:id="@+id/btonAdelanteAn"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:src="@drawable/adelante"
+            android:background="@drawable/bg_btn_borde_verde"
+            app:layout_constraintBottom_toBottomOf="@id/txtAnual"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="32dp"
+            android:contentDescription="@string/flecha_adelante" />
+
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/graficoLineasAnual"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btonAdelanteAn"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            />
+
+
+        <TextView
+            android:id="@+id/noDataAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/graficoLineasAnual"
+            app:layout_constraintEnd_toEndOf="@id/graficoLineasAnual"
+            app:layout_constraintTop_toTopOf="@id/graficoLineasAnual"
+            app:layout_constraintBottom_toBottomOf="@id/graficoLineasAnual"
+            android:text="@string/no_data"
+            android:gravity="center"
+            style="@style/TxtGrisPequenoItalic"
+            android:layout_margin="48dp"
+            android:visibility="invisible"/>
+
+
+        <TextView
+            android:id="@+id/descAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/graficoLineasAnual"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="@string/texto_prueba"
+            style="@style/TxtGrisPequenoItalic"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

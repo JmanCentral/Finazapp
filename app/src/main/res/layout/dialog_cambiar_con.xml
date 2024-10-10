@@ -1,0 +1,57 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtinputConActual"
+            style="@style/EstiloEditText"
+            android:background="@drawable/bg_btn_borde_amarillo"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/contrase_a_actual"
+            android:inputType="textPassword"/>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtinputNuevaCon"
+            style="@style/EstiloEditText"
+            android:background="@drawable/bg_btn_borde_amarillo"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/nueva_contrase_a"
+            android:inputType="textPassword"/>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtinputConfCon"
+            style="@style/EstiloEditText"
+            android:background="@drawable/bg_btn_borde_amarillo"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/confirmar_nueva_contrase_a"
+            android:inputType="textPassword"/>
+
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/verde_oscuro"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

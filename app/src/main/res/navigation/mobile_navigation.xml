@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.practica.finazapp.Vista.DashboardFragment"
+        android:label="@string/dashboard"
+        tools:layout="@layout/fragment_dashboard">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.practica.finazapp.Vista.Perfil"
+        android:label="@string/perfil"
+        tools:layout="@layout/fragment_perfil">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_reporte"
+        android:name="com.practica.finazapp.Vista.Reporte"
+        android:label="@string/reporte"
+        tools:layout="@layout/fragment_reporte" >
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_ingresos"
+        android:name="com.practica.finazapp.Vista.Ingresos"
+        android:label="@string/ingresos"
+        tools:layout="@layout/fragment_ingresos" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/graficos_Avanzados"
+        android:name="com.practica.finazapp.Vista.Graficos_Avanzados"
+        android:label="fragment_graficos__avanzados"
+        tools:layout="@layout/fragment_graficos__avanzados" />
+    <fragment
+        android:id="@+id/fragmentCategorias"
+        android:name="com.practica.finazapp.Vista.FragmentCategorias"
+        android:label="fragment_categorias"
+        tools:layout="@layout/fragment_categorias" />
+    <fragment
+        android:id="@+id/gastosAltos"
+        android:name="com.practica.finazapp.Vista.GastosAltos"
+        android:label="fragment_gastos_altos"
+        tools:layout="@layout/fragment_gastos_altos" />
+    <fragment
+        android:id="@+id/fragmentAlertas"
+        android:name="com.practica.finazapp.Vista.FragmentAlertas"
+        android:label="fragment_alertas"
+        tools:layout="@layout/fragment_alertas" />
+    <fragment
+        android:id="@+id/fragmentProyecciones"
+        android:name="com.practica.finazapp.FragmentProyecciones"
+        android:label="fragment_proyecciones"
+        tools:layout="@layout/fragment_proyecciones" />
+
+
+</navigation>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".Vista.Ingresos">
+
+        <TextView
+            android:id="@+id/txt_ingresos"
+            style="@style/TxtVerdeGrande"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/desc_ingresos"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <View
+            android:id="@+id/bloqueVerde"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/verde_claro"
+            app:layout_constraintTop_toTopOf ="@id/txtBlanco"
+            app:layout_constraintBottom_toBottomOf ="@id/txtBlanco"
+            android:layout_below="@id/txtBlanco"/>
+
+        <TextView
+            android:id="@+id/txtBlanco"
+            style="@style/TxtBlancoGrandeItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ceros"
+            app:layout_constraintTop_toBottomOf="@id/txt_ingresos"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtIngresosMens"
+            style="@style/TxtVerdeGrande"
+            android:text="@string/ingresos_mens"
+            app:layout_constraintTop_toBottomOf="@id/bloqueVerde"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <View
+            android:id="@+id/lineaVerde2"
+            android:layout_width="match_parent"
+            android:layout_height="2.3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/txtIngresosMens"
+            android:background="@color/verde_oscuro"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/contenedor_ingresos_mes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/lineaVerde2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="16dp"
+            style="@style/TxtNegroMedianoItalic2"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnNuevoIngresoMes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/contenedor_ingresos_mes"
+            app:layout_constraintStart_toStartOf="parent"
+            android:clickable="true"
+            >
+            <ImageButton
+                android:id="@+id/botonCirculo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toTopOf ="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/circulo_verde"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mas"
+                android:elevation="2dp"
+                android:contentDescription="@string/desc_mas" />
+
+            <TextView
+                android:id="@+id/textoNuevoIngMes"
+                style="@style/TxtVerdeMedianoItalicNegrita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nuevo_ingreso"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/botonCirculo"
+                app:layout_constraintTop_toTopOf="@id/botonCirculo"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtIngresosCas"
+            style="@style/TxtVerdeGrande"
+            android:text="@string/ingresos_cas"
+            app:layout_constraintTop_toBottomOf="@id/btnNuevoIngresoMes"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <View
+            android:id="@+id/lineaVerde3"
+            android:layout_width="match_parent"
+            android:layout_height="2.3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/txtIngresosCas"
+            android:background="@color/verde_oscuro"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/contenedor_ingresos_cas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/lineaVerde3"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TxtNegroMedianoItalic2"
+            android:padding="16dp"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnNuevoIngresoCas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/contenedor_ingresos_cas"
+            app:layout_constraintStart_toStartOf="parent"
+            android:clickable="true"
+            >
+            <ImageButton
+                android:id="@+id/botonCirculo2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toTopOf ="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/circulo_verde"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mas"
+                android:elevation="2dp"
+                android:contentDescription="@string/desc_mas" />
+
+            <TextView
+                android:id="@+id/texto"
+                style="@style/TxtVerdeMedianoItalicNegrita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nuevo_ingreso"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/botonCirculo2"
+                app:layout_constraintTop_toTopOf="@id/botonCirculo2"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="verde_claro">#001A41</color>
+    <color name="verde_oscuro">#001A41</color>
+    <color name="amarillo_claro">#001A41</color>
+    <color name="amarillo_oscuro">#001A41</color>
+    <color name="gris">#DEDEDE</color>
+    <color name="texto1">#797979</color>
+    <color name="texto2">#C0C0C0</color>
+    <color name="negro">#000000</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="disponible">#87EE2B</color>
+    <color name="Gastos_Varios">#F66B6B</color>
+    <color name="Alimentos">#FF66C1</color>
+    <color name="Transporte">#339AF0</color>
+    <color name="Servicios">#EEB62B</color>
+    <color name="Mercado">#FD8435</color>
+</resources>

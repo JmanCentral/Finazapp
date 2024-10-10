@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Vista.FragmentCategorias"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
+            tools:context=".Vista.FragmentCategorias">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloqueGastosVarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bloqueDisponible">
+
+                <ImageView
+                    android:id="@+id/imgGastosVarios"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/perdiendo1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtGastosVarios"
+                    style="@style/TxtNegroMedianoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/gastos_varios"
+                    app:layout_constraintBottom_toBottomOf="@id/imgGastosVarios"
+                    app:layout_constraintStart_toEndOf="@id/imgGastosVarios" />
+
+
+                <View
+                    android:id="@+id/barraGrisGastosVarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gris"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgGastosVarios" />
+
+                <View
+                    android:id="@+id/barraGastosVarios"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/Gastos_Varios"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgGastosVarios" />
+
+
+                <TextView
+                    android:id="@+id/cantidadGastosVarios"
+                    style="@style/TxtNegroPequenoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ceros"
+                    app:layout_constraintStart_toEndOf="@id/imgGastosVarios"
+                    app:layout_constraintTop_toBottomOf="@id/barraGrisGastosVarios" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewGastosVarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/bloqueGastosVarios" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloqueAlimentos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewGastosVarios">
+
+                <ImageView
+                    android:id="@+id/imgAlimentos"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/alimento"
+                    android:contentDescription="@string/alimentos"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtAlimentos"
+                    style="@style/TxtNegroMedianoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/alimentos"
+                    app:layout_constraintBottom_toBottomOf="@id/imgAlimentos"
+                    app:layout_constraintStart_toEndOf="@id/imgAlimentos" />
+
+
+                <View
+                    android:id="@+id/barraGrisAlimentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gris"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgAlimentos" />
+
+
+                <View
+                    android:id="@+id/barraAlimentos"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/Alimentos"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgAlimentos" />
+
+
+                <TextView
+                    android:id="@+id/cantidadAlimentos"
+                    style="@style/TxtNegroPequenoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ceros"
+                    app:layout_constraintStart_toEndOf="@id/imgAlimentos"
+                    app:layout_constraintTop_toBottomOf="@id/barraAlimentos" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAlimentos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/bloqueAlimentos" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloqueTransporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewAlimentos">
+
+                <ImageView
+                    android:id="@+id/imgTransporte"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/transmilenio"
+                    android:contentDescription="@string/transporte"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTransporte"
+                    style="@style/TxtNegroMedianoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/transporte"
+                    app:layout_constraintBottom_toBottomOf="@id/imgTransporte"
+                    app:layout_constraintStart_toEndOf="@id/imgTransporte" />
+
+
+                <View
+                    android:id="@+id/barraGrisTransporte"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gris"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgTransporte" />
+
+
+                <View
+                    android:id="@+id/barraTransporte"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/Transporte"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgTransporte" />
+
+
+                <TextView
+                    android:id="@+id/cantidadTransporte"
+                    style="@style/TxtNegroPequenoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ceros"
+                    app:layout_constraintStart_toEndOf="@id/imgTransporte"
+                    app:layout_constraintTop_toBottomOf="@id/barraGrisTransporte" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTransporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/bloqueTransporte" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloqueServicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewTransporte">
+
+                <ImageView
+                    android:id="@+id/imgServicios"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/departamento"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtServicios"
+                    style="@style/TxtNegroMedianoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/servicios"
+                    app:layout_constraintBottom_toBottomOf="@id/imgServicios"
+                    app:layout_constraintStart_toEndOf="@id/imgServicios" />
+
+
+                <View
+                    android:id="@+id/barraGrisServicios"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gris"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgServicios" />
+
+                <View
+                    android:id="@+id/barraServicios"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/Servicios"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgServicios" />
+
+
+                <TextView
+                    android:id="@+id/cantidadServicios"
+                    style="@style/TxtNegroPequenoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ceros"
+                    app:layout_constraintStart_toEndOf="@id/imgServicios"
+                    app:layout_constraintTop_toBottomOf="@id/barraServicios" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewServicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/bloqueServicios" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloqueMercado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewServicios">
+
+                <ImageView
+                    android:id="@+id/imgMercado"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/mercado1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtMercado"
+                    style="@style/TxtNegroMedianoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/mercado"
+                    app:layout_constraintBottom_toBottomOf="@id/imgMercado"
+                    app:layout_constraintStart_toEndOf="@id/imgMercado" />
+
+
+                <View
+                    android:id="@+id/barraGrisMercado"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gris"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgMercado" />
+
+                <View
+                    android:id="@+id/barraMercado"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/Mercado"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgMercado" />
+
+
+                <TextView
+                    android:id="@+id/cantidadMercado"
+                    style="@style/TxtNegroPequenoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ceros"
+                    app:layout_constraintStart_toEndOf="@id/imgMercado"
+                    app:layout_constraintTop_toBottomOf="@id/barraMercado" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMercado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/bloqueMercado" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bloqueDisponible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="300dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgDisponible"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/disponi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtDisponible"
+                    style="@style/TxtNegroMedianoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/disponible"
+                    app:layout_constraintBottom_toBottomOf="@id/imgDisponible"
+                    app:layout_constraintStart_toEndOf="@id/imgDisponible" />
+
+                <View
+                    android:id="@+id/barraGrisDisponible"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gris"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgDisponible" />
+
+
+                <View
+                    android:id="@+id/barraDisponible"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/disponible"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgDisponible" />
+
+
+                <TextView
+                    android:id="@+id/cantidadDisponible"
+                    style="@style/TxtNegroPequenoItalic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ceros"
+                    app:layout_constraintStart_toEndOf="@id/imgDisponible"
+                    app:layout_constraintTop_toBottomOf="@id/barraDisponible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/verde_claro"
+                android:contentDescription="@string/desc_mas"
+                android:src="@drawable/mas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:maxImageSize="40dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="174dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/bloqueDisponible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

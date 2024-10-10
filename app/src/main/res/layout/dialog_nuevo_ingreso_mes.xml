@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TxtVerdeMedianoItalic"
+        android:text="@string/nuevo_ingreso"
+        android:gravity="center"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/cantidad"
+        android:inputType="numberDecimal"
+        android:padding="4dp"
+        style="@style/EstiloEditText"
+        android:background="@drawable/bg_btn_borde_amarillo"
+        android:layout_margin="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextFecha"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/fecha"
+        android:focusable="false"
+        android:clickable="true"
+        android:padding="4dp"
+        style="@style/EstiloEditText"
+        android:background="@drawable/bg_btn_borde_amarillo"
+        android:layout_margin="8dp"/>
+
+
+    <EditText
+        android:id="@+id/editTextDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/descripcion"
+        android:padding="4dp"
+        style="@style/EstiloEditText"
+        android:background="@drawable/bg_btn_borde_amarillo"
+        android:layout_margin="8dp"/>
+
+    <TextView
+        android:id="@+id/txtAdvertencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TxtVerdePequenoItalic"
+        android:text="el ingreso se contara a partir de la fecha especificada y se tendra en cuenta cada mes."/>
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TxtVerdeMedianoItalic"
+        android:text="@string/modificar_gasto"
+        android:gravity="center"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:prompt="@string/selec_cat"
+        android:entries="@array/categorias"
+        android:background="@drawable/bg_spinner"
+        android:dropDownWidth="match_parent"
+        android:layout_margin="8dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/cantidad"
+        android:inputType="numberDecimal"
+        android:padding="4dp"
+        style="@style/EstiloEditText"
+        android:background="@drawable/bg_btn_borde_amarillo"
+        android:layout_margin="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextFecha"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/fecha"
+        android:focusable="false"
+        android:clickable="true"
+        android:padding="4dp"
+        style="@style/EstiloEditText"
+        android:background="@drawable/bg_btn_borde_amarillo"
+        android:layout_margin="8dp"/>
+
+
+    <EditText
+        android:id="@+id/editTextDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/descripcion"
+        android:padding="4dp"
+        style="@style/EstiloEditText"
+        android:background="@drawable/bg_btn_borde_amarillo"
+        android:layout_margin="8dp"/>
+
+    <Button
+        android:layout_marginTop="8dp"
+        android:id="@+id/btnEliminarGasto"
+        style="@style/EstiloBordeVerde"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:text="@string/eliminar_gasto1"
+        android:textSize="20sp"/>
+
+
+</LinearLayout>
