@@ -89,7 +89,6 @@ class Categorias : AppCompatActivity() {
     @Override
     override fun onBackPressed() {
 
-        // No hacemos nada aquí para evitar que el usuario regrese a la actividad anterior
     }
 }
 

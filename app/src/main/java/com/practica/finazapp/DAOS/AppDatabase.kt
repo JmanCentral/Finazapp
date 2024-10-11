@@ -6,14 +6,16 @@ import androidx.room.RoomDatabase
 import com.practica.finazapp.Entidades.Alerta
 import com.practica.finazapp.Entidades.Gasto
 import com.practica.finazapp.Entidades.Ingreso
+import com.practica.finazapp.Entidades.Session
 import com.practica.finazapp.Entidades.Usuario
 
-@Database(entities = [Usuario::class, Ingreso::class, Gasto::class, Alerta::class], version = 3)
+@Database(entities = [Usuario::class, Ingreso::class, Gasto::class, Alerta::class,Session::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun usuarioDao(): UsuarioDao
     abstract fun ingresoDao(): IngresoDao
     abstract fun gastoDao(): GastoDao
     abstract fun alertaDao(): AlertaDao
+    abstract fun sessionDao(): SessionDao
 
 
     companion object {

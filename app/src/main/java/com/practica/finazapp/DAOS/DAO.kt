@@ -8,6 +8,7 @@ import androidx.room.Query
 import com.practica.finazapp.Entidades.Alerta
 import com.practica.finazapp.Entidades.Gasto
 import com.practica.finazapp.Entidades.Ingreso
+import com.practica.finazapp.Entidades.Session
 import com.practica.finazapp.Entidades.Usuario
 
 @Dao
@@ -35,6 +36,19 @@ interface UsuarioDao {
 
     @Query("UPDATE Usuario SET contrasena = :contrasena WHERE ID = :usuarioId")
     fun cambiarContrasena(contrasena: String, usuarioId: Long)
+}
+
+@Dao
+interface SessionDao {
+
+    @Insert
+    suspend fun insert(session: Session)
+
+    @Query("SELECT * FROM session LIMIT 1")
+    suspend fun getSession(): Session?
+
+    @Query("DELETE FROM session")
+    suspend fun deleteSession()
 }
 
 @Dao

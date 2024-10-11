@@ -18,6 +18,12 @@ data class Usuario(
     val documento: String
 )
 
+@Entity(tableName = "session")
+data class Session(
+    @PrimaryKey val id: Int = 0, // Siempre habrá una única sesión con id = 0
+    val userId: Long
+)
+
 @Entity(foreignKeys = [ForeignKey(entity = Usuario::class, parentColumns = ["id"], childColumns = ["idUsuario"], onDelete = CASCADE)])
 data class Ingreso(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,

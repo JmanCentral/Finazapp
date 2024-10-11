@@ -12,6 +12,8 @@ import com.practica.finazapp.R
 import com.practica.finazapp.Entidades.Usuario
 import com.practica.finazapp.ViewModel.UsuarioViewModel
 import com.google.android.material.textfield.TextInputEditText
+import com.practica.finazapp.DAOS.AppDatabase
+import com.practica.finazapp.Entidades.Session
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -21,12 +23,14 @@ import org.mindrot.jbcrypt.BCrypt
 class Registro : AppCompatActivity() {
 
     private lateinit var usuarioViewModel: UsuarioViewModel
+    private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
         // Inicializar el ViewModel
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
+        db = AppDatabase.getDatabase(applicationContext)
 
         val btnVolver = findViewById<TextView>(R.id.btnVolver)
         val txtInputContrasena2 = findViewById<TextInputEditText>(R.id.txtinputContrasena2)
@@ -75,6 +79,8 @@ class Registro : AppCompatActivity() {
                 documento = ""
             )
 
+
+
             insertarUsuario(nuevoUsuario)
         }
 
@@ -116,6 +122,17 @@ class Registro : AppCompatActivity() {
                 // Observa el LiveData del último ID de usuario
                 usuarioViewModel.getUltimoUsuarioId().observe(this) { ultimoUsuarioId ->
                     if (ultimoUsuarioId != null) {
+
+
+                        // Guardar la sesión en la base de datos
+                        lifecycleScope.launch {
+                            // Eliminar cualquier sesión existente
+                            db.sessionDao().deleteSession()
+
+                            // Insertar la nueva sesión
+                            val session = Session(userId = ultimoUsuarioId)
+                            db.sessionDao().insert(session)
+                        }
                         // Redirigir a la actividad Dashboard con el ID del usuario
                         val intent = Intent(this@Registro, MainActivity2::class.java)
                         intent.putExtra("usuario_id", ultimoUsuarioId)
