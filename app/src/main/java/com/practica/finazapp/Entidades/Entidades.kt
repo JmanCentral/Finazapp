@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 
-data class FechaYAnio(val mesParte: String, val mes: String, val anioParte: String, val anio: String)
+
 @Entity
 data class Usuario(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
