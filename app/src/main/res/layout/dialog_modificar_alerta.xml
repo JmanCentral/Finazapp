@@ -61,14 +61,14 @@
         android:padding="4dp" />
 
     <Button
-        android:id="@+id/btnEliminarIngreso"
+        android:id="@+id/btnEliminarAlerta"
         style="@style/EstiloBordeVerde"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="8dp"
         android:background="#001A41"
-        android:text="@string/eiminar_ingreso"
+        android:text="@string/eiminar_alerta"
         android:textColor="@color/blanco"
         android:textSize="20sp" />
 

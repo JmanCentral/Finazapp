@@ -90,6 +90,7 @@
     <string name="error_al_obtener_el_id_del_usuario">Error al obtener el ID del usuario</string>
     <string name="modificar_ingreso">modificar ingreso</string>
     <string name="eiminar_ingreso">Eiminar ingreso</string>
+    <string name="eiminar_alerta">Eiminar alerta</string>
     <string name="eliminar_ingreso">eliminar ingreso</string>
     <string name="modificar_gasto">modificar gasto</string>
     <string name="eliminar_gasto">eliminar_gasto</string>

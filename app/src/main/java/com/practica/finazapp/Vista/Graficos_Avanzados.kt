@@ -121,7 +121,6 @@ class Graficos_Avanzados : Fragment() {
         val categories = mutableListOf<String>()
         var index = 0f
 
-
         val colorMap = mapOf(
             "Gastos Hormiga" to Color.parseColor("#F66B6B"),
             "Alimentos" to Color.parseColor("#FF66C1"),
@@ -136,14 +135,14 @@ class Graficos_Avanzados : Fragment() {
         for ((categoria, cantidad) in datos) {
             val barEntries = listOf(BarEntry(index, cantidad))
             val barDataSet = BarDataSet(barEntries, categoria)
-            barDataSet.color = colorMap[categoria] ?: Color.BLACK
+            barDataSet.color = colorMap[categoria] ?: Color.WHITE
             barDataSet.setDrawValues(true)
             barDataSet.valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
                     return String.format("$%.2f", value)
                 }
             }
-            barDataSet.valueTextColor = Color.BLACK
+            barDataSet.valueTextColor = Color.WHITE
             barDataSet.valueTextSize = 12f
             barDataSet.barBorderWidth = 0.9f
 
@@ -158,6 +157,7 @@ class Graficos_Avanzados : Fragment() {
         val combinedData = CombinedData()
         combinedData.setData(barData)
 
+        // Configurar el eje X
         val xAxis = combinedChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.granularity = 1f
@@ -168,25 +168,30 @@ class Graficos_Avanzados : Fragment() {
         xAxis.spaceMax = 0.5f
         xAxis.setDrawGridLines(false)
 
-
-        xAxis.textColor = Color.BLACK
+        // Cambiar el color del texto y del eje X
+        xAxis.textColor = Color.WHITE // Cambiar el color del texto del eje X
         xAxis.textSize = 12f
-
+        xAxis.axisLineColor = Color.BLUE // Cambiar el color de la línea del eje X
 
         xAxis.axisMinimum = -0.5f
         xAxis.axisMaximum = categories.size - 0.5f
         combinedChart.data = combinedData
 
-
+        // Configurar la leyenda
         val legend = combinedChart.legend
         legend.isEnabled = true
         legend.form = Legend.LegendForm.SQUARE
         legend.textSize = 12f
-        legend.textColor = Color.BLACK
+        legend.textColor = Color.WHITE
         legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
         legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
         legend.orientation = Legend.LegendOrientation.HORIZONTAL
         legend.setDrawInside(false)
+
+        // Configurar el eje Y (si es necesario)
+        val yAxis = combinedChart.axisLeft
+        yAxis.axisLineColor = Color.WHITE // Cambiar el color de la línea del eje Y
+        yAxis.textColor = Color.WHITE // Cambiar el color del texto del eje Y
 
         combinedChart.animateY(1000)
         combinedChart.invalidate()
@@ -206,10 +211,10 @@ class Graficos_Avanzados : Fragment() {
 
         val radarDataSet = RadarDataSet(radarEntries, "Gastos por Categoría")
         radarDataSet.color = Color.BLUE
-        radarDataSet.fillColor = Color.BLACK
+        radarDataSet.fillColor = Color.WHITE
         radarDataSet.setDrawFilled(true)
         radarDataSet.lineWidth = 2f
-        radarDataSet.valueTextColor = Color.BLACK
+        radarDataSet.valueTextColor = Color.WHITE
         radarDataSet.valueTextSize = 12f
 
         val radarData = RadarData(radarDataSet)
@@ -219,13 +224,14 @@ class Graficos_Avanzados : Fragment() {
         val xAxis = radarChart.xAxis
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         xAxis.textSize = 12f
-        xAxis.textColor = Color.BLACK
-        xAxis.axisLineColor = Color.BLACK // Cambiar el color del eje X
+        xAxis.textColor = Color.WHITE // Cambiar el color del texto del eje X
+        xAxis.axisLineColor = Color.WHITE // Cambiar el color del eje X
 
         // Configurar el eje Y
         val yAxis = radarChart.yAxis
         yAxis.axisMinimum = 0f
-        yAxis.axisLineColor = Color.GREEN // Cambiar el color del eje Y
+        yAxis.axisLineColor = Color.WHITE // Cambiar el color del eje Y
+        yAxis.textColor = Color.WHITE // Cambiar el color del texto del eje Y
 
         // Eliminar la leyenda
         radarChart.legend.isEnabled = false
@@ -237,10 +243,10 @@ class Graficos_Avanzados : Fragment() {
 
 
 
+
     private fun cargarLineChart() {
+
         val lineChart = binding.lineChart
-
-
         val fechaInicio = "2024-01-01"
         val fechaFin = "2024-12-31"
 
@@ -249,16 +255,14 @@ class Graficos_Avanzados : Fragment() {
                 val entries = mutableListOf<Entry>()
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-
                 for (gasto in gastos) {
                     val fecha = dateFormat.parse(gasto.fecha)?.time ?: 0L
                     entries.add(Entry(fecha.toFloat(), gasto.valor.toFloat()))
                 }
 
-
                 val lineDataSet = LineDataSet(entries, "Gastos")
                 lineDataSet.color = Color.BLUE
-                lineDataSet.valueTextColor = Color.BLACK
+                lineDataSet.valueTextColor = Color.WHITE
 
                 // Configurar la línea como cúbica
                 lineDataSet.lineWidth = 2f
@@ -271,7 +275,7 @@ class Graficos_Avanzados : Fragment() {
                 lineChart.data = lineData
                 lineChart.invalidate()
 
-
+                // Configuración del eje X (fechas)
                 val xAxis = lineChart.xAxis
                 xAxis.position = XAxis.XAxisPosition.BOTTOM
                 xAxis.valueFormatter = object : ValueFormatter() {
@@ -280,6 +284,11 @@ class Graficos_Avanzados : Fragment() {
                     }
                 }
                 xAxis.setDrawGridLines(false)
+                xAxis.textColor = Color.WHITE  // Cambiar el color de las fechas en el eje X
+
+                // Configuración del eje Y (valores)
+                val yAxis = lineChart.axisLeft
+                yAxis.textColor = Color.WHITE  // Cambiar el color de los números en el eje Y
 
                 // Configuración adicional del gráfico
                 lineChart.description.text = "Gastos por Fecha"
@@ -287,6 +296,7 @@ class Graficos_Avanzados : Fragment() {
             }
         }
     }
+
 
 }
 
