@@ -22,15 +22,22 @@
         android:background="@drawable/bg_btn_borde_amarillo"
         android:layout_margin="8dp"/>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDescripcion"
+    <!-- TextView para la categoría límite -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Elige categorías límite"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- Spinner para la descripción -->
+    <Spinner
+        android:id="@+id/spinnerDescripcion"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:hint="Descripción"
-        android:padding="4dp"
-        style="@style/EstiloEditText"
-        android:background="@drawable/bg_btn_borde_amarillo"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_btn_borde_amarillo"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextFecha"
@@ -56,3 +63,4 @@
         android:layout_margin="8dp"/>
 
 </LinearLayout>
+

@@ -9,8 +9,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -79,10 +81,17 @@ class FragmentAlertas : Fragment(), AlertasListener {
 
     private fun mostrarDialogoNuevaAlerta() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_nueva_alerta, null)
+
         val editTextNombreAlarma = dialogView.findViewById<TextInputEditText>(R.id.editTextNombreAlarma)
-        val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
+        val spinnerDescripcion = dialogView.findViewById<Spinner>(R.id.spinnerDescripcion)
         val editTextFecha = dialogView.findViewById<EditText>(R.id.editTextFecha)
         val editTextAlertalimite = dialogView.findViewById<EditText>(R.id.editTextAlertalimite)
+
+        // Configurar el Spinner con las opciones de categorías
+        val categorias = listOf("disponible", "gastos hormiga", "alimentos", "transporte", "servicios", "mercado")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categorias)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerDescripcion.adapter = adapter
 
         editTextFecha.setOnClickListener {
             showDatePickerDialog(editTextFecha)
@@ -92,11 +101,11 @@ class FragmentAlertas : Fragment(), AlertasListener {
             .setView(dialogView)
             .setPositiveButton("Guardar") { dialog, _ ->
                 val nombreAlarma = editTextNombreAlarma.text.toString().trim()
-                val descripcion = editTextDescripcion.text.toString().trim()
+                val descripcion = spinnerDescripcion.selectedItem.toString().trim()
                 val fechaOriginal = editTextFecha.text.toString().trim()
                 val limiteStr = editTextAlertalimite.text.toString().trim()
 
-                if (nombreAlarma.isBlank() || fechaOriginal.isBlank() || descripcion.isBlank() || limiteStr.isBlank()) {
+                if (nombreAlarma.isBlank() || fechaOriginal.isBlank() || limiteStr.isBlank()) {
                     Toast.makeText(requireContext(), "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
