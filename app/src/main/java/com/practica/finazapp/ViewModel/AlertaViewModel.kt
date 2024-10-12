@@ -39,14 +39,12 @@ class AlertaViewModel(application: Application) : AndroidViewModel(application) 
         return repository.getAlertasDeEsteMes(usuarioId)
     }
     fun eliminarAlerta(id: Long) {
-        viewModelScope.launch {
+
             repository.eliminarAlerta(id)
-        }
     }
-    fun modificarAlerta(nombre: String, descripcion: String, fecha: String, valor: Double, id: Long) {
-        viewModelScope.launch {
-            repository.modificarAlerta(nombre, descripcion, fecha, valor, id)
-        }
+    fun modificarAlerta( fecha: String, valor: Double, id: Long) {
+
+            repository.modificarAlerta(fecha, valor, id)
     }
     fun truncarAlertas() {
         viewModelScope.launch {

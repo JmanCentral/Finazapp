@@ -161,8 +161,8 @@ interface AlertaDao {
     fun eliminarAlerta(id: Long)
 
     // Modificar una alerta específica
-    @Query("UPDATE Alerta SET nombre = :nombre, descripcion = :descripcion, fecha = :fecha, valor = :valor WHERE id = :id")
-    fun modificarAlerta(nombre: String, descripcion: String, fecha: String, valor: Double, id: Long)
+    @Query("UPDATE Alerta SET fecha = :fecha, valor = :valor WHERE id = :id")
+    fun modificarAlerta(fecha: String, valor: Double, id: Long)
 
     // Eliminar todas las alertas
     @Query("DELETE FROM Alerta")

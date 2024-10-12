@@ -174,8 +174,7 @@ class FragmentAlertas : Fragment(), AlertasListener {
                     // Puedes optar por mostrar un único Toast fuera del ciclo si hay al menos una alerta excedida
                 }
 
-                // Añadir la alerta al contenedor
-                binding.contenedorAlerta.addView(alertaView)
+                cargarAlertas(alertas, binding.contenedorAlerta)
             }
 
             // Opcional: Mostrar un Toast general si hay alguna alerta que excede el ingreso total
@@ -183,9 +182,6 @@ class FragmentAlertas : Fragment(), AlertasListener {
             if (hayExceso) {
                 Toast.makeText(requireContext(), "Hay alertas que exceden tu ingreso total.", Toast.LENGTH_LONG).show()
             }
-
-            cargarAlertas(alertas, binding.contenedorAlerta)
-
         }
     }
 
@@ -199,7 +195,6 @@ class FragmentAlertas : Fragment(), AlertasListener {
                 binding.contenedorAlerta.removeAllViews()
                 return@observe
             }
-
             // Obtener las alertas del usuario actual
             alertaViewModel.getAlertasDeEsteMes(usuarioId).observe(viewLifecycleOwner) { alertas ->
                 // Notificar al listener con las alertas y el ingreso total
@@ -212,7 +207,6 @@ class FragmentAlertas : Fragment(), AlertasListener {
     @SuppressLint("SetTextI18n")
     private fun cargarAlertas(alertas: List<Alerta>, contenedor: ViewGroup) {
         Log.d("DashboardFragment", "Cargando alertas en contenedor ${contenedor.id}")
-        // Limpiar el contenedor antes de cargar las nuevas alertas
         contenedor.removeAllViews()
         val numberFormat = NumberFormat.getInstance()
         numberFormat.maximumFractionDigits = 2
@@ -249,21 +243,17 @@ class FragmentAlertas : Fragment(), AlertasListener {
                     val textViewTitulo = dialogView.findViewById<TextView>(R.id.titulo)
                     val btnEliminarAlerta = dialogView.findViewById<Button>(R.id.btnEliminarAlerta)
                     val editTextValor = dialogView.findViewById<TextInputEditText>(R.id.editTextIngresoLimite)
-                    val editTextNombre = dialogView.findViewById<TextInputEditText>(R.id.editTextNombre)
                     val editTextFecha = dialogView.findViewById<EditText>(R.id.editTextFecha)
-                    val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
                     val dialogModificarAlerta = AlertDialog.Builder(requireContext())
                         .setView(dialogView)
                         .setPositiveButton("Aceptar") { dialog, _ ->
                             val valor = editTextValor.text.toString()
-                            val nombre = editTextNombre.text.toString()
                             val fecha = editTextFecha.text.toString()
-                            val descripcion = editTextDescripcion.text.toString()
-                            if (fecha.isBlank() || descripcion.isBlank()) {
+                            if (fecha.isBlank()) {
                                 Toast.makeText(requireContext(), "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show()
                                 return@setPositiveButton
                             }
-                            if (valor.isBlank() || nombre.isBlank()) {
+                            if (valor.isBlank()) {
                                 Toast.makeText(requireContext(), "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show()
                                 return@setPositiveButton
                             }
@@ -275,7 +265,7 @@ class FragmentAlertas : Fragment(), AlertasListener {
 
                             lifecycleScope.launch {
                                 withContext(Dispatchers.IO) {
-                                    alertaViewModel.modificarAlerta(nombre ,descripcion , fechaFormateada , valor.toDouble() , alerta.id, )
+                                    alertaViewModel.modificarAlerta(fechaFormateada , valor.toDouble() , alerta.id)
                                 }
                             }
                             dialog.dismiss()
@@ -286,9 +276,14 @@ class FragmentAlertas : Fragment(), AlertasListener {
                         .create()
 
                     textViewTitulo.text = "Modificar alerta '${alerta.nombre}'"
+                    val fecha = alerta.fecha
+                    val parts = fecha.split("-")
+                    val fechaFormateada = "${parts[2]}/${parts[1]}/${parts[0]}"
+                    editTextFecha.setText(fechaFormateada )
+                    editTextFecha.setOnClickListener {
+                        showDatePickerDialog(editTextFecha)
+                    }
                     editTextValor.setText(alerta.valor.toString())
-                    editTextNombre.setText(alerta.nombre)
-
                     btnEliminarAlerta.setOnClickListener {
                         lifecycleScope.launch {
                             withContext(Dispatchers.IO) {

@@ -15,27 +15,6 @@
         android:gravity="center"
         />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextNombre"
-        style="@style/EstiloEditText"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_btn_borde_amarillo"
-        android:hint="nombre"
-        android:inputType="text"
-        android:padding="4dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="@string/descripcion"
-        android:inputType="text"
-        android:padding="4dp"
-        style="@style/EstiloEditText"
-        android:background="@drawable/bg_btn_borde_amarillo"
-        android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/editTextFecha"

@@ -23,8 +23,8 @@ class AlertaRepository(private val alertaDao: AlertaDao) {
         alertaDao.eliminarAlerta(id)
     }
 
-    fun modificarAlerta(nombre: String, descripcion: String, fecha: String, valor: Double, id: Long) {
-        alertaDao.modificarAlerta(nombre, descripcion, fecha, valor, id)
+    fun modificarAlerta(fecha: String, valor: Double, id: Long) {
+        alertaDao.modificarAlerta(fecha, valor, id)
     }
     fun truncarAlertas(){
         alertaDao.truncarAlertas()

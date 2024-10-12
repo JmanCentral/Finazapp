@@ -227,6 +227,7 @@ class Ingresos : Fragment(), IngresosListener {
         val numberFormat = NumberFormat.getInstance()
         numberFormat.maximumFractionDigits = 2
         for (ingreso in ingresos) {
+
             val descripcionTextView = TextView(requireContext()).apply {
                 layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 text = ingreso.descripcion
