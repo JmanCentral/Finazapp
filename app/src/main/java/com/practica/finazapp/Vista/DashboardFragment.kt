@@ -240,17 +240,33 @@ class DashboardFragment : Fragment(), OnItemClickListener {
 
                         // Comprobar si la descripción de la alerta está en las categorías del spinner
                         if (categoriasSpinner.contains(alerta.descripcion)) {
-                            // Obtener el gasto de la categoría asociada a la alerta
-                            gastosViewModel.getValorGastosMesCategoria(usuarioId, alerta.descripcion).observe(viewLifecycleOwner) { gastoCategoria ->
-                                gastoCategoria?.let { totalGastos ->
-                                    // Verificar si el gasto en esa categoría supera el valor de la alerta
+                            if (alerta.descripcion == "disponible") {
+                                // Si la alerta es para "disponible", obtenemos el gasto total
+                                gastosViewModel.getValorGastosMes(usuarioId).observe(viewLifecycleOwner) { totalGastos ->
+                                    // Verificamos si el gasto total excede el valor de la alerta
                                     if (totalGastos > alerta.valor) {
                                         // Verificar si ya se envió una notificación para esta alerta
                                         if (!notificacionesEnviadas.contains(alerta.id)) {
-                                            val mensaje = "La alerta '${alerta.nombre}' para la categoría '${alerta.descripcion}' ha sido excedida. Límite: ${alerta.valor}, Gasto: $totalGastos"
+                                            val mensaje = "La alerta '${alerta.nombre}' para el gasto disponible ha sido excedida. Límite: ${alerta.valor}, Gasto total: $totalGastos"
                                             notificationHelper.sendNotification("Alerta Excedida", mensaje)
                                             notificacionesEnviadas.add(alerta.id)
                                             Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
+                                        }
+                                    }
+                                }
+                            } else {
+                                // Si no es la categoría "disponible", usamos el gasto por categoría
+                                gastosViewModel.getValorGastosMesCategoria(usuarioId, alerta.descripcion).observe(viewLifecycleOwner) { gastoCategoria ->
+                                    gastoCategoria?.let { totalGastos ->
+                                        // Verificar si el gasto en esa categoría supera el valor de la alerta
+                                        if (totalGastos > alerta.valor) {
+                                            // Verificar si ya se envió una notificación para esta alerta
+                                            if (!notificacionesEnviadas.contains(alerta.id)) {
+                                                val mensaje = "La alerta '${alerta.nombre}' para la categoría '${alerta.descripcion}' ha sido excedida. Límite: ${alerta.valor}, Gasto: $totalGastos"
+                                                notificationHelper.sendNotification("Alerta Excedida", mensaje)
+                                                notificacionesEnviadas.add(alerta.id)
+                                                Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
+                                            }
                                         }
                                     }
                                 }
@@ -261,6 +277,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             }
         }
     }
+
 
 
 
