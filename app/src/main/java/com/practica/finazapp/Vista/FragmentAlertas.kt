@@ -1,5 +1,6 @@
 package com.practica.finazapp.Vista
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Build
@@ -8,14 +9,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
 import com.practica.finazapp.Entidades.Alerta
 import com.practica.finazapp.R
@@ -24,6 +28,10 @@ import com.practica.finazapp.ViewModel.GastosViewModel
 import com.practica.finazapp.ViewModel.IngresoViewModel
 import com.practica.finazapp.ViewModel.SharedViewModel
 import com.practica.finazapp.databinding.FragmentAlertasBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.text.NumberFormat
 
 class FragmentAlertas : Fragment(), AlertasListener {
 
@@ -175,10 +183,13 @@ class FragmentAlertas : Fragment(), AlertasListener {
             if (hayExceso) {
                 Toast.makeText(requireContext(), "Hay alertas que exceden tu ingreso total.", Toast.LENGTH_LONG).show()
             }
+
+            cargarAlertas(alertas, binding.contenedorAlerta)
+
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
     private fun cargarAlertas() {
         // Obtener los ingresos totales del mes del usuario
         ingresoViewModel.getIngTotalDeEsteMes(usuarioId).observe(viewLifecycleOwner) { ingresoTotal ->
@@ -194,6 +205,104 @@ class FragmentAlertas : Fragment(), AlertasListener {
                 // Notificar al listener con las alertas y el ingreso total
                 onAlertasCargadas(alertas, ingresoTotal)
             }
+        }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun cargarAlertas(alertas: List<Alerta>, contenedor: ViewGroup) {
+        Log.d("DashboardFragment", "Cargando alertas en contenedor ${contenedor.id}")
+        // Limpiar el contenedor antes de cargar las nuevas alertas
+        contenedor.removeAllViews()
+        val numberFormat = NumberFormat.getInstance()
+        numberFormat.maximumFractionDigits = 2
+
+        for (alerta in alertas) {
+            val descripcionTextView = TextView(requireContext()).apply {
+                layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                text = alerta.nombre
+                setTextAppearance(R.style.TxtNegroMedianoItalic)
+            }
+
+            val valorTextView = TextView(requireContext()).apply {
+                layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                text = "${numberFormat.format(alerta.valor)}$"
+                setTextAppearance(R.style.TxtNegroMedianoItalic)
+            }
+
+            val registroLayout = ConstraintLayout(requireContext()).apply {
+                layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
+                addView(descripcionTextView)
+                addView(valorTextView)
+
+                val descParams = descripcionTextView.layoutParams as ConstraintLayout.LayoutParams
+                descParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+                descParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+
+                val valorParams = valorTextView.layoutParams as ConstraintLayout.LayoutParams
+                valorParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+                valorParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+
+                // Agregar OnClickListener para abrir el diálogo de modificación de alerta
+                setOnClickListener {
+                    val dialogView = layoutInflater.inflate(R.layout.dialog_modificar_alerta, null)
+                    val textViewTitulo = dialogView.findViewById<TextView>(R.id.titulo)
+                    val btnEliminarAlerta = dialogView.findViewById<Button>(R.id.btnEliminarAlerta)
+                    val editTextValor = dialogView.findViewById<TextInputEditText>(R.id.editTextIngresoLimite)
+                    val editTextNombre = dialogView.findViewById<TextInputEditText>(R.id.editTextNombre)
+                    val editTextFecha = dialogView.findViewById<EditText>(R.id.editTextFecha)
+                    val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
+                    val dialogModificarAlerta = AlertDialog.Builder(requireContext())
+                        .setView(dialogView)
+                        .setPositiveButton("Aceptar") { dialog, _ ->
+                            val valor = editTextValor.text.toString()
+                            val nombre = editTextNombre.text.toString()
+                            val fecha = editTextFecha.text.toString()
+                            val descripcion = editTextDescripcion.text.toString()
+                            if (fecha.isBlank() || descripcion.isBlank()) {
+                                Toast.makeText(requireContext(), "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show()
+                                return@setPositiveButton
+                            }
+                            if (valor.isBlank() || nombre.isBlank()) {
+                                Toast.makeText(requireContext(), "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show()
+                                return@setPositiveButton
+                            }
+                            val parts = fecha.split("/")
+                            val dia = parts[0].padStart(2, '0')
+                            val mes = parts[1].padStart(2, '0')
+                            val anio = parts[2]
+                            val fechaFormateada = "${anio}-${mes}-${dia}"
+
+                            lifecycleScope.launch {
+                                withContext(Dispatchers.IO) {
+                                    alertaViewModel.modificarAlerta(nombre ,descripcion , fechaFormateada , valor.toDouble() , alerta.id, )
+                                }
+                            }
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton("Cancelar") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .create()
+
+                    textViewTitulo.text = "Modificar alerta '${alerta.nombre}'"
+                    editTextValor.setText(alerta.valor.toString())
+                    editTextNombre.setText(alerta.nombre)
+
+                    btnEliminarAlerta.setOnClickListener {
+                        lifecycleScope.launch {
+                            withContext(Dispatchers.IO) {
+                                alertaViewModel.eliminarAlerta(alerta.id)
+                            }
+                        }
+                        dialogModificarAlerta.dismiss()
+                    }
+
+                    dialogModificarAlerta.show()
+                }
+            }
+
+            contenedor.addView(registroLayout)
         }
     }
 
