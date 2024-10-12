@@ -88,7 +88,7 @@ class FragmentAlertas : Fragment(), AlertasListener {
         val editTextAlertalimite = dialogView.findViewById<EditText>(R.id.editTextAlertalimite)
 
         // Configurar el Spinner con las opciones de categorías
-        val categorias = listOf("disponible", "gastos hormiga", "alimentos", "transporte", "servicios", "mercado")
+        val categorias = listOf("disponible", "Gastos Hormiga", "Alimentos", "Transporte", "Servicios", "Mercado")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categorias)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerDescripcion.adapter = adapter

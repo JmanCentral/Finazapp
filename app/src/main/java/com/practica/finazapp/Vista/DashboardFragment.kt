@@ -222,40 +222,47 @@ class DashboardFragment : Fragment(), OnItemClickListener {
 
     private fun verificarAlertasExcedidas() {
         // Obtener el ingreso total del mes
-        ingresoViewModel.getIngTotalDeEsteMes(usuarioId).observe(viewLifecycleOwner, Observer { ingresoTotal ->
+        ingresoViewModel.getIngTotalDeEsteMes(usuarioId).observe(viewLifecycleOwner) { ingresoTotal ->
             if (ingresoTotal == null) {
                 Log.d("DashboardFragment", "No hay ingresos registrados para este mes.")
-                return@Observer
+                return@observe
             }
 
             // Obtener las alertas del mes
-            alertaViewModel.getAlertasDeEsteMes(usuarioId).observe(viewLifecycleOwner, Observer { alertas ->
+            alertaViewModel.getAlertasDeEsteMes(usuarioId).observe(viewLifecycleOwner) { alertas ->
                 if (alertas.isEmpty()) {
                     Log.d("DashboardFragment", "No hay alertas configuradas para este mes.")
                 } else {
-                    // Obtener el total de gastos del mes
-                    gastosViewModel.getValorGastosMes(usuarioId).observe(viewLifecycleOwner, Observer { gastosTotal ->
+                    // Recorrer todas las alertas
+                    for (alerta in alertas) {
+                        // Verificar si la alerta está asociada a una categoría del Spinner (de las alertas)
+                        val categoriasSpinner = listOf("disponible", "Gastos Hormiga", "Alimentos", "Transporte", "Servicios", "Mercado")
 
-                        gastosTotal?.let { totalGastos ->
-                            val dineroDisponible = ingresoTotal - totalGastos
-                            Log.d("DashboardFragment", "Ingreso Total: $ingresoTotal, Gastos Total: $totalGastos")
-                            for (alerta in alertas) {
-                                if (alerta.valor > dineroDisponible) {
-                                    // Verificar si ya se envió una notificación para esta alerta
-                                    if (!notificacionesEnviadas.contains(alerta.id)) {
-                                        val mensaje = "La alerta '${alerta.nombre}' excede el ingreso total. Límite: ${alerta.valor}, Ingreso: $ingresoTotal"
-                                        notificationHelper.sendNotification("Alerta Excedida", mensaje)
-                                        notificacionesEnviadas.add(alerta.id)
-                                        Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
+                        // Comprobar si la descripción de la alerta está en las categorías del spinner
+                        if (categoriasSpinner.contains(alerta.descripcion)) {
+                            // Obtener el gasto de la categoría asociada a la alerta
+                            gastosViewModel.getValorGastosMesCategoria(usuarioId, alerta.descripcion).observe(viewLifecycleOwner) { gastoCategoria ->
+                                gastoCategoria?.let { totalGastos ->
+                                    // Verificar si el gasto en esa categoría supera el valor de la alerta
+                                    if (totalGastos > alerta.valor) {
+                                        // Verificar si ya se envió una notificación para esta alerta
+                                        if (!notificacionesEnviadas.contains(alerta.id)) {
+                                            val mensaje = "La alerta '${alerta.nombre}' para la categoría '${alerta.descripcion}' ha sido excedida. Límite: ${alerta.valor}, Gasto: $totalGastos"
+                                            notificationHelper.sendNotification("Alerta Excedida", mensaje)
+                                            notificacionesEnviadas.add(alerta.id)
+                                            Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
+                                        }
                                     }
                                 }
                             }
                         }
-                    })
+                    }
                 }
-            })
-        })
+            }
+        }
     }
+
+
 
 
 
