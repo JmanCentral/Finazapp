@@ -153,8 +153,8 @@ class Ingresos : Fragment(), IngresosListener {
                         fecha = fecha,
                         idUsuario = usuarioId,
                         tipo = "mensual")
-                    ingresoViewModel.insertIngreso(nuevoIngreso)
 
+                    ingresoViewModel.insertIngreso(nuevoIngreso)
 
                 }
                 .setNegativeButton("Cancelar") { dialog, _ ->

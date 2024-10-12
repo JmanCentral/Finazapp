@@ -11,7 +11,6 @@ class IngresoRepository(private val ingresoDao: IngresoDao) {
         ingresoDao.insert(ingreso)
     }
 
-
     fun getIngMesDeEsteMes(usuarioId: Long): LiveData<List<Ingreso>>{
         return ingresoDao.getIngMesDeEsteMes(usuarioId)
     }

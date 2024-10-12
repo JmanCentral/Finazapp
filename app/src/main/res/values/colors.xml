@@ -15,4 +15,6 @@
     <color name="Transporte">#339AF0</color>
     <color name="Servicios">#EEB62B</color>
     <color name="Mercado">#FD8435</color>
+    <color name="black">#000000</color>
+    <color name="red">#F44336</color>
 </resources>

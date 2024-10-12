@@ -93,6 +93,7 @@
     <string name="eiminar_alerta">Eiminar alerta</string>
     <string name="eliminar_ingreso">eliminar ingreso</string>
     <string name="modificar_gasto">modificar gasto</string>
+    <string name="modificar_alerta">modificar alerta</string>
     <string name="eliminar_gasto">eliminar_gasto</string>
     <string name="eliminar_gasto1">eliminar gasto</string>
     <string name="en_construcci_n">En construcción</string>

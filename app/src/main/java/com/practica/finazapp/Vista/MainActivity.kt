@@ -21,8 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Crear el canal de notificaciones
-        crearCanalNotificacion(this)
+
 
         // Inicializar la base de datos
         db = AppDatabase.getDatabase(applicationContext)
@@ -53,17 +52,18 @@ class MainActivity : ComponentActivity() {
 
     }
 
-    fun crearCanalNotificacion(context: Context) {
+    private fun crearCanalDeNotificacion() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val nombre = "CanalGastosAltos"
-            val descripcion = "Notificaciones para gastos altos"
-            val importancia = NotificationManager.IMPORTANCE_DEFAULT
-            val canal = NotificationChannel("GASTOS_ALTOS", nombre, importancia)
-            canal.description = descripcion
+            val nombre = "Alertas de Gastos"
+            val descripcionText = "Canal para alertas de límites de gastos"
+            val importancia = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel("ALERTA_GASTOS", nombre, importancia).apply {
+                description = descripcionText
+            }
 
             val notificationManager: NotificationManager =
-                context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(canal)
+                this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 }

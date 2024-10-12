@@ -2,6 +2,10 @@ package com.practica.finazapp.Vista
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +18,10 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +34,8 @@ import com.practica.finazapp.ViewModel.SharedViewModel
 import com.practica.finazapp.databinding.FragmentDashboardBinding
 import com.practica.finazapp.ui.Estilos.CustomSpinnerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.practica.finazapp.Entidades.Alerta
+import com.practica.finazapp.ViewModel.AlertaViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,9 +49,14 @@ class DashboardFragment : Fragment(), OnItemClickListener {
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var gastosViewModel: GastosViewModel
     private lateinit var ingresoViewModel: IngresoViewModel
+    private lateinit var alertaViewModel: AlertaViewModel
+    private lateinit var sharedPreferences: SharedPreferences
     private var disponible: Double = 0.0
+    private lateinit var notificationHelper: NotificationHelper
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
+
+    private val notificacionesEnviadas = mutableSetOf<Long>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,13 +74,25 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         gastosViewModel = ViewModelProvider(this)[GastosViewModel::class.java]
         sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         ingresoViewModel = ViewModelProvider(this)[IngresoViewModel::class.java]
+        alertaViewModel = ViewModelProvider(this)[AlertaViewModel::class.java]
 
+        notificationHelper = NotificationHelper(requireContext())
+
+
+        // Inicializar SharedPreferences
+        sharedPreferences = requireContext().getSharedPreferences("notificaciones", Context.MODE_PRIVATE)
+
+        // Cargar los IDs ya notificados
+        val ids = sharedPreferences.getStringSet("alertas_notificadas", emptySet()) ?: emptySet()
+        notificacionesEnviadas.addAll(ids.mapNotNull { it.toLongOrNull() })
 
         sharedViewModel.idUsuario.observe(viewLifecycleOwner) { usuarioId ->
             Log.d("FragmentGastos", "id usuario: $usuarioId")
             usuarioId?.let {
                 this.usuarioId = it
                 cargarDatos()
+                verificarAlertasExcedidas()
+
                 val bloqueTransporte = binding.bloqueTransporte
                 val bloqueGastosVarios = binding.bloqueGastosVarios
                 val bloqueMercado = binding.bloqueMercado
@@ -160,6 +186,10 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                                             gastosViewModel.insertGasto(nuevoGasto)
                                         }
                                     }
+
+                                    Toast.makeText(requireContext(), "Gasto agregado correctamente", Toast.LENGTH_SHORT).show()
+                                    dialog.dismiss()
+                                    verificarAlertasExcedidas()
                                     dialog.dismiss()
                                 } catch (e: NumberFormatException) {
                                     // Manejar el caso en que la cantidad no sea un número válido
@@ -189,6 +219,45 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             }
 
     }
+
+    private fun verificarAlertasExcedidas() {
+        // Obtener el ingreso total del mes
+        ingresoViewModel.getIngTotalDeEsteMes(usuarioId).observe(viewLifecycleOwner, Observer { ingresoTotal ->
+            if (ingresoTotal == null) {
+                Log.d("DashboardFragment", "No hay ingresos registrados para este mes.")
+                return@Observer
+            }
+
+            // Obtener las alertas del mes
+            alertaViewModel.getAlertasDeEsteMes(usuarioId).observe(viewLifecycleOwner, Observer { alertas ->
+                if (alertas.isEmpty()) {
+                    Log.d("DashboardFragment", "No hay alertas configuradas para este mes.")
+                } else {
+                    // Obtener el total de gastos del mes
+                    gastosViewModel.getValorGastosMes(usuarioId).observe(viewLifecycleOwner, Observer { gastosTotal ->
+
+                        gastosTotal?.let { totalGastos ->
+                            val dineroDisponible = ingresoTotal - totalGastos
+                            Log.d("DashboardFragment", "Ingreso Total: $ingresoTotal, Gastos Total: $totalGastos")
+                            for (alerta in alertas) {
+                                if (alerta.valor > dineroDisponible) {
+                                    // Verificar si ya se envió una notificación para esta alerta
+                                    if (!notificacionesEnviadas.contains(alerta.id)) {
+                                        val mensaje = "La alerta '${alerta.nombre}' excede el ingreso total. Límite: ${alerta.valor}, Ingreso: $ingresoTotal"
+                                        notificationHelper.sendNotification("Alerta Excedida", mensaje)
+                                        notificacionesEnviadas.add(alerta.id)
+                                        Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    }
+
+
 
     @SuppressLint("MissingSuperCall")
     @Override

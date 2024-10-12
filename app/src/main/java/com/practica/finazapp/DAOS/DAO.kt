@@ -140,13 +140,13 @@ interface AlertaDao {
     @Query("SELECT * FROM Alerta")
     fun getAll(): LiveData<List<Alerta>>
 
+    // Insertar una nueva alerta
+    @Insert
+    fun insert(alerta: Alerta)
+
     // Obtener todas las alertas de un usuario específico
     @Query("SELECT * FROM Alerta WHERE idUsuario = :usuarioId")
     fun getAlertasPorUsuario(usuarioId: Long): LiveData<List<Alerta>>
-
-    // Insertar una nueva alerta
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(alerta: Alerta)
 
     // Obtener alertas de este año basadas en la fecha
     @Query("SELECT * FROM Alerta WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now')")

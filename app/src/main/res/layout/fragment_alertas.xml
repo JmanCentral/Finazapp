@@ -52,7 +52,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_alerta_nueva"
+        android:id="@+id/btnalertanueva"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
