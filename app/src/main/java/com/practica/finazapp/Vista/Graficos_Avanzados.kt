@@ -242,8 +242,6 @@ class Graficos_Avanzados : Fragment() {
 
 
 
-
-
     private fun cargarLineChart() {
 
         val lineChart = binding.lineChart
@@ -266,14 +264,17 @@ class Graficos_Avanzados : Fragment() {
 
                 // Configurar la línea como cúbica
                 lineDataSet.lineWidth = 2f
-                lineDataSet.setDrawCircles(true)
-                lineDataSet.setDrawValues(true)
+                lineDataSet.setDrawCircles(true)  // Mostrar los puntos
+                lineDataSet.setCircleColor(Color.RED)  // Color de los puntos
+                lineDataSet.setDrawValues(true)  // Mostrar valores en los puntos
                 lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
                 val lineData = LineData(lineDataSet)
 
                 lineChart.data = lineData
-                lineChart.invalidate()
+
+                // Animación del gráfico
+                lineChart.animateXY(1000, 1000)  // Animar tanto en X como en Y (1 segundo)
 
                 // Configuración del eje X (fechas)
                 val xAxis = lineChart.xAxis
@@ -285,6 +286,7 @@ class Graficos_Avanzados : Fragment() {
                 }
                 xAxis.setDrawGridLines(false)
                 xAxis.textColor = Color.WHITE  // Cambiar el color de las fechas en el eje X
+                xAxis.labelRotationAngle = -45f  // Rotar las etiquetas de fecha si es necesario
 
                 // Configuración del eje Y (valores)
                 val yAxis = lineChart.axisLeft
@@ -292,9 +294,14 @@ class Graficos_Avanzados : Fragment() {
 
                 // Configuración adicional del gráfico
                 lineChart.description.text = "Gastos por Fecha"
+                lineChart.description.textColor = Color.WHITE
                 lineChart.axisRight.isEnabled = false
+
+                // Refrescar el gráfico
+                lineChart.invalidate()
             }
         }
+
     }
 
 
