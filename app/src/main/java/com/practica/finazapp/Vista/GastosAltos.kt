@@ -34,7 +34,6 @@ class GastosAltos : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inicializar el RecyclerView
         recyclerView = binding.ListGastos
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
