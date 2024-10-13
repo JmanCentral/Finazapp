@@ -56,7 +56,7 @@
         tools:layout="@layout/fragment_alertas" />
     <fragment
         android:id="@+id/fragmentProyecciones"
-        android:name="com.practica.finazapp.FragmentProyecciones"
+        android:name="com.practica.finazapp.Vista.FragmentProyecciones"
         android:label="fragment_proyecciones"
         tools:layout="@layout/fragment_proyecciones" />
 
