@@ -91,6 +91,8 @@ interface IngresoDao {
 
 @Dao
 interface GastoDao {
+
+
     @Query("SELECT * FROM Gasto")
     fun getAll(): LiveData<List<Gasto>>
 

@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.practica.finazapp.R
 import com.practica.finazapp.ViewModel.AlertaViewModel
 import com.practica.finazapp.ViewModel.GastosViewModel
 import com.practica.finazapp.ViewModel.IngresoViewModel
@@ -40,5 +44,20 @@ class FragmentProyecciones : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        super.onViewCreated(view, savedInstanceState)
+        gastosViewModel = ViewModelProvider(this)[GastosViewModel::class.java]
+        sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
+        sharedViewModel.idUsuario.observe(viewLifecycleOwner) { usuarioId ->
+            this.usuarioId = usuarioId
+            calcularYMostrarPrediccion()
+        }
+    }
+
+    private fun calcularYMostrarPrediccion() {
+
+    }
 }
+

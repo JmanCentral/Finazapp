@@ -30,10 +30,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/Proyeccion1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Proyección 1"
+            android:text="Gastos a futuro"
             android:textSize="18sp"
             android:textColor="@android:color/black" />
     </androidx.cardview.widget.CardView>
@@ -49,6 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/Proyeccion2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
