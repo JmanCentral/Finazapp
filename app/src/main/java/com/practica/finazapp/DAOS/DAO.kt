@@ -120,9 +120,6 @@ interface GastoDao {
     @Query("SELECT * FROM Gasto WHERE idUsuario = :idUsuario AND DATE(fecha) BETWEEN DATE(:fechaInf) AND DATE(:fechaSup)")
     fun getGastosPorFechas(idUsuario: Long, fechaInf: String, fechaSup: String): LiveData<List<Gasto>>
 
-    @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId ORDER BY valor DESC LIMIT :limite")
-    fun getGastosMasAltos(usuarioId: Long, limite: Int): LiveData<List<Gasto>>
-
     @Query("SELECT * FROM gasto WHERE idUsuario = :usuarioId ORDER BY valor DESC")
     fun getGastosOrdenados(usuarioId: Long): LiveData<List<Gasto>>
 
@@ -132,8 +129,13 @@ interface GastoDao {
     @Query("SELECT * FROM gasto WHERE idUsuario = :usuarioId ORDER BY valor DESC")
     fun getGastosOrdenadosDesc(usuarioId: Long): LiveData<List<Gasto>>
 
+    @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId ORDER BY valor DESC LIMIT 1")
+    fun getGastoMasAlto(usuarioId: Long): LiveData<Gasto>
 
+    @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId ORDER BY valor ASC LIMIT 1")
+    fun getGastoMasBajo(usuarioId: Long): LiveData<Gasto>
 }
+
 
 @Dao
 interface AlertaDao {

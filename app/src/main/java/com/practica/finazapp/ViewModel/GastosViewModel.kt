@@ -69,4 +69,12 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
         return repository.getGastosOrdenadosDesc(usuarioId)
 
     }
+    fun getGastoMasAlto(usuarioId: Long): LiveData<Gasto> {
+        return repository.getGastoMasAlto(usuarioId)
+    }
+
+    fun getGastoMasBajo(usuarioId: Long): LiveData<Gasto> {
+        return repository.getGastoMasBajp(usuarioId)
+
+    }
 }

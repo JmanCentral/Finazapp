@@ -19,6 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
         android:layout_width="0dp"
@@ -29,14 +31,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/Proyeccion1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Gastos a futuro"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewGastoMasAlto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="El Gasto más Alto es....."
+                android:textSize="18sp"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/imageViewGasto"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:src="@drawable/servicios"/>
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -50,11 +65,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/Proyeccion2"
+            android:id="@+id/textViewGastoMasBajo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Proyección 2"
+            android:text="El gasto mas bajo es..."
             android:textSize="18sp"
             android:textColor="@android:color/black" />
     </androidx.cardview.widget.CardView>
@@ -70,10 +85,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Proyección 3"
+            android:text="Recomendación 3"
             android:textSize="18sp"
             android:textColor="@android:color/black" />
     </androidx.cardview.widget.CardView>
@@ -96,5 +112,9 @@
             android:textSize="18sp"
             android:textColor="@android:color/black" />
     </androidx.cardview.widget.CardView>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

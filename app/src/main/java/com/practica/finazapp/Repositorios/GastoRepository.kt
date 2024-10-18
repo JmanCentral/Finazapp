@@ -43,4 +43,11 @@ class GastoRepository(private val gastoDao: GastoDao) {
     fun getGastosOrdenadosDesc(usuarioId: Long): LiveData<List<Gasto>> {
         return gastoDao.getGastosOrdenadosDesc(usuarioId)
     }
+
+    fun getGastoMasAlto(usuarioId: Long): LiveData<Gasto> {
+        return gastoDao.getGastoMasAlto(usuarioId)
+    }
+    fun getGastoMasBajp(usuarioId: Long): LiveData<Gasto> {
+        return gastoDao.getGastoMasAlto(usuarioId)
+    }
 }
