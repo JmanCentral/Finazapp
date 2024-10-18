@@ -12,14 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="36dp"
-        android:text="Proyecciones Futuras"
+        android:text="Recomendaciones"
         android:textColor="#001A41"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
@@ -38,18 +36,24 @@
 
             <TextView
                 android:id="@+id/textViewGastoMasAlto"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:padding="16dp"
                 android:text="El Gasto más Alto es....."
-                android:textSize="18sp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
+            <!-- Imagen ocupando la otra mitad de la CardView -->
             <ImageView
                 android:id="@+id/imageViewGasto"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:src="@drawable/servicios"/>
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:src="@drawable/alto"
+                android:scaleType="centerCrop"
+                android:contentDescription="Imagen de gasto"
+                android:layout_gravity="center" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -64,14 +68,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/textViewGastoMasBajo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="El gasto mas bajo es..."
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:orientation="horizontal">
+
+            <!-- Texto ocupando la mitad del espacio -->
+            <TextView
+                android:id="@+id/textViewGastoMasBajo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="El gasto mas bajo es..."
+                android:textSize="18sp"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/imageViewGasto1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:src="@drawable/feliz"
+                android:scaleType="centerCrop"
+                android:contentDescription="Imagen de gasto"
+                android:layout_gravity="center" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
