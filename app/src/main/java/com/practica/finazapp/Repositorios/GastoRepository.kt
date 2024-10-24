@@ -58,5 +58,11 @@ class GastoRepository(private val gastoDao: GastoDao) {
         return gastoDao.getGastosRecurrentes(usuarioId)
     }
 
+    fun getPorcentajesGastosSobreIngresos(usuarioId: Long): LiveData<Double> {
+        return gastoDao.getPorcentajeGastosSobreIngresos(usuarioId)
+    }
+
+
+
 
 }

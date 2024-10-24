@@ -84,6 +84,9 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
 
     fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>> {
         return repository.getGastosRecurrentes(usuarioId)
+    }
 
+    fun getPorcentajesGastosSobreIngresos(usuarioId: Long): LiveData<Double> {
+        return repository.getPorcentajesGastosSobreIngresos(usuarioId)
     }
 }

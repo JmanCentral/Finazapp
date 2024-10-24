@@ -248,7 +248,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                                         // Verificar si ya se envió una notificación para esta alerta
                                         if (!notificacionesEnviadas.contains(alerta.id)) {
                                             val mensaje = "La alerta '${alerta.nombre}' para el gasto disponible ha sido excedida. Límite: ${alerta.valor}, Gasto total: $totalGastos"
-                                            notificationHelper.sendNotification("Alerta Excedida", mensaje)
+                                            notificationHelper.sendNotification("Gasto Excedido", mensaje)
                                             notificacionesEnviadas.add(alerta.id)
                                             Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
                                         }
@@ -263,7 +263,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                                             // Verificar si ya se envió una notificación para esta alerta
                                             if (!notificacionesEnviadas.contains(alerta.id)) {
                                                 val mensaje = "La alerta '${alerta.nombre}' para la categoría '${alerta.descripcion}' ha sido excedida. Límite: ${alerta.valor}, Gasto: $totalGastos"
-                                                notificationHelper.sendNotification("Alerta Excedida", mensaje)
+                                                notificationHelper.sendNotification("Gasto Excedido", mensaje)
                                                 notificacionesEnviadas.add(alerta.id)
                                                 Log.d("DashboardFragment", "Notificación enviada para alerta: ${alerta.nombre}")
                                             }
@@ -478,7 +478,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             in 1_000_000.0..1_500_000.0 -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 5.0
-                    "Alimentos" -> 35.0
+                    "Alimentos" -> 30.0  // Ajustado a un rango más razonable
                     "Servicios" -> 20.0
                     "Transporte" -> 15.0
                     "Mercado" -> 25.0
@@ -488,7 +488,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             in 1_500_000.0..2_500_000.0 -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 6.0
-                    "Alimentos" -> 30.0
+                    "Alimentos" -> 28.0  // Ajustado
                     "Servicios" -> 18.0
                     "Transporte" -> 17.0
                     "Mercado" -> 29.0
@@ -498,7 +498,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             in 2_500_000.0..4_000_000.0 -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 8.0
-                    "Alimentos" -> 28.0
+                    "Alimentos" -> 25.0  // Ajustado
                     "Servicios" -> 15.0
                     "Transporte" -> 15.0
                     "Mercado" -> 34.0
@@ -508,7 +508,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             in 4_000_000.0..6_000_000.0 -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 10.0
-                    "Alimentos" -> 25.0
+                    "Alimentos" -> 22.0  // Ajustado
                     "Servicios" -> 12.0
                     "Transporte" -> 15.0
                     "Mercado" -> 38.0
@@ -518,7 +518,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             in 6_000_000.0..10_000_000.0 -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 12.0
-                    "Alimentos" -> 22.0
+                    "Alimentos" -> 20.0  // Ajustado
                     "Servicios" -> 10.0
                     "Transporte" -> 14.0
                     "Mercado" -> 42.0
@@ -528,7 +528,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             else -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 15.0
-                    "Alimentos" -> 18.0
+                    "Alimentos" -> 18.0  // Ajustado
                     "Servicios" -> 8.0
                     "Transporte" -> 10.0
                     "Mercado" -> 49.0
@@ -542,7 +542,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
     private fun mostrarAdvertencia(categoria: String, porcentaje: Double) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Advertencia de Gastos")
-        builder.setMessage("Has gastado el $porcentaje% en $categoria, lo cual supera el límite permitido.")
+        builder.setMessage("Has gastado el $porcentaje% en $categoria, lo cual supera el límite recomendado por entidades financieras como la Superintendencia Financiera de Colombia. Te sugerimos revisar tus gastos para mantener un mejor control de tu presupuesto.")
 
         // Botón de Aceptar
         builder.setPositiveButton("Aceptar") { dialog, _ ->
@@ -553,8 +553,6 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
-
 
     private fun mostrarListaDeGastos(recyclerView: RecyclerView, categoria: String) {
         gastosViewModel.getGastosMesCategoria(usuarioId, categoria)

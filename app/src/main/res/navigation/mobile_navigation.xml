@@ -37,7 +37,7 @@
     <fragment
         android:id="@+id/graficos_Avanzados"
         android:name="com.practica.finazapp.Vista.Graficos_Avanzados"
-        android:label="fragment_graficos__avanzados"
+        android:label="Visualización específica"
         tools:layout="@layout/fragment_graficos__avanzados" />
     <fragment
         android:id="@+id/fragmentCategorias"
@@ -47,17 +47,17 @@
     <fragment
         android:id="@+id/gastosAltos"
         android:name="com.practica.finazapp.Vista.GastosAltos"
-        android:label="fragment_gastos_altos"
+        android:label="Listado de gastos"
         tools:layout="@layout/fragment_gastos_altos" />
     <fragment
         android:id="@+id/fragmentAlertas"
         android:name="com.practica.finazapp.Vista.FragmentAlertas"
-        android:label="fragment_alertas"
+        android:label="Gestion de alertas"
         tools:layout="@layout/fragment_alertas" />
     <fragment
         android:id="@+id/fragmentProyecciones"
         android:name="com.practica.finazapp.Vista.FragmentProyecciones"
-        android:label="fragment_proyecciones"
+        android:label="Recomendaciones"
         tools:layout="@layout/fragment_proyecciones" />
 
 

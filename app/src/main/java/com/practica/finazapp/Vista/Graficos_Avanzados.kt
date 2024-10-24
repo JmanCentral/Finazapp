@@ -253,28 +253,34 @@ class Graficos_Avanzados : Fragment() {
                 val entries = mutableListOf<Entry>()
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
+                // Añadir entradas al gráfico
                 for (gasto in gastos) {
                     val fecha = dateFormat.parse(gasto.fecha)?.time ?: 0L
                     entries.add(Entry(fecha.toFloat(), gasto.valor.toFloat()))
                 }
 
                 val lineDataSet = LineDataSet(entries, "Gastos")
-                lineDataSet.color = Color.BLUE
-                lineDataSet.valueTextColor = Color.WHITE
 
-                // Configurar la línea como cúbica
-                lineDataSet.lineWidth = 2f
+                // Configuración de estilo
+                lineDataSet.color = Color.BLUE  // Color de la línea
+                lineDataSet.valueTextColor = Color.WHITE  // Color de los valores
+
+                // Configuración de los puntos
                 lineDataSet.setDrawCircles(true)  // Mostrar los puntos
-                lineDataSet.setCircleColor(Color.RED)  // Color de los puntos
-                lineDataSet.setDrawValues(true)  // Mostrar valores en los puntos
-                lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+                lineDataSet.setCircleColor(Color.RED)  // Puntos rojos
+                lineDataSet.setCircleHoleColor(Color.RED)  // Puntos sólidos sin huecos
+                lineDataSet.setDrawValues(true)  // Mostrar los valores en los puntos
+                lineDataSet.circleRadius = 5f  // Tamaño de los puntos
+                lineDataSet.lineWidth = 2f  // Grosor de la línea
+                lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER  // Línea suave entre puntos
 
                 val lineData = LineData(lineDataSet)
 
+                // Asignar datos al gráfico
                 lineChart.data = lineData
 
-                // Animación del gráfico
-                lineChart.animateXY(1000, 1000)  // Animar tanto en X como en Y (1 segundo)
+                // Animación
+                lineChart.animateXY(1000, 1000)  // Animar en X y Y (1 segundo)
 
                 // Configuración del eje X (fechas)
                 val xAxis = lineChart.xAxis
@@ -284,9 +290,9 @@ class Graficos_Avanzados : Fragment() {
                         return dateFormat.format(Date(value.toLong()))
                     }
                 }
-                xAxis.setDrawGridLines(false)
-                xAxis.textColor = Color.WHITE  // Cambiar el color de las fechas en el eje X
-                xAxis.labelRotationAngle = -45f  // Rotar las etiquetas de fecha si es necesario
+                xAxis.setDrawGridLines(false)  // Quitar líneas de la cuadrícula
+                xAxis.textColor = Color.WHITE  // Color del texto en el eje X
+                xAxis.labelRotationAngle = -45f  // Rotar etiquetas de fecha si es necesario
 
                 // Configuración del eje Y (valores)
                 val yAxis = lineChart.axisLeft
@@ -295,13 +301,12 @@ class Graficos_Avanzados : Fragment() {
                 // Configuración adicional del gráfico
                 lineChart.description.text = "Gastos por Fecha"
                 lineChart.description.textColor = Color.WHITE
-                lineChart.axisRight.isEnabled = false
+                lineChart.axisRight.isEnabled = false  // Deshabilitar eje derecho
 
                 // Refrescar el gráfico
                 lineChart.invalidate()
             }
         }
-
     }
 
 

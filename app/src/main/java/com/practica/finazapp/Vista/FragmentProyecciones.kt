@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.practica.finazapp.R
@@ -59,7 +58,7 @@ class FragmentProyecciones : Fragment() {
         }
     }
 
-    private fun  MostrarRecomendaciones(){
+    private fun MostrarRecomendaciones() {
 
         gastosViewModel.getGastoMasAlto(usuarioId).observe(viewLifecycleOwner) { gastoMasAlto ->
 
@@ -68,19 +67,21 @@ class FragmentProyecciones : Fragment() {
                 val textViewGastoMasAlto = view?.findViewById<TextView>(R.id.textViewGastoMasAlto)
 
                 // Crea el mensaje con los datos del gasto
-                val mensaje = "El gasto más alto es '${it.descripcion}' de la categoría '${it.categoria}' con un valor de \$${it.valor}. Te recomendamos reducir ese gasto significativamente."
+                val mensaje =
+                    "El gasto más alto es '${it.descripcion}' de la categoría '${it.categoria}' con un valor de \$${it.valor}. Te recomendamos reducir ese gasto significativamente."
 
                 // Actualiza el TextView con el mensaje
                 textViewGastoMasAlto?.text = mensaje
             }
         }
 
-        gastosViewModel.getGastoMasBajo(usuarioId).observe(viewLifecycleOwner){ gastoMasBajo ->
+        gastosViewModel.getGastoMasBajo(usuarioId).observe(viewLifecycleOwner) { gastoMasBajo ->
             gastoMasBajo?.let {
 
-            val textViewGastoMasBajo = view?.findViewById<TextView>(R.id.textViewGastoMasBajo)
-            val mensaje = "El gasto más bajo es '${it.descripcion}' de la categoría '${it.categoria}' con un valor de \$${it.valor}. Te recomendamos que sigas así de juicioso."
-            textViewGastoMasBajo?.text = mensaje
+                val textViewGastoMasBajo = view?.findViewById<TextView>(R.id.textViewGastoMasBajo)
+                val mensaje =
+                    "El gasto más bajo es '${it.descripcion}' de la categoría '${it.categoria}' con un valor de \$${it.valor}. Te recomendamos que sigas así de juicioso."
+                textViewGastoMasBajo?.text = mensaje
 
             }
 
@@ -90,28 +91,32 @@ class FragmentProyecciones : Fragment() {
             promedio?.let {
                 val textViewGastoPromedio = view?.findViewById<TextView>(R.id.textpromedio)
                 val mesActual = obtenerMesActual()
-                val mensaje = "El promedio de gastos del mes de $mesActual es de \$${String.format("%.2f", it)}"
+                val mensaje = "El promedio de gastos del mes de $mesActual es de \$${
+                    String.format(
+                        "%.2f",
+                        it
+                    )
+                }"
                 textViewGastoPromedio?.text = mensaje
             }
         }
 
-        gastosViewModel.getGastosRecurrentes(usuarioId).observe(viewLifecycleOwner) { recurrentes ->
-            recurrentes?.let {
-                val textViewGastoRecurrente = view?.findViewById<TextView>(R.id.textRecurrente)
+        gastosViewModel.getPorcentajesGastosSobreIngresos(usuarioId)
+            .observe(viewLifecycleOwner) { porcentaje  ->
+                porcentaje?.let {
+                    val textViewGastoPorcentaje = view?.findViewById<TextView>(R.id.textRecurrente)
 
-                if (recurrentes.isNotEmpty()) {
-                    val stringBuilder = StringBuilder()
-
-                    recurrentes.forEach { gasto ->
-                        stringBuilder.append("Descripción: ${gasto.descripcion}, Valor: \$${gasto.valor}, Fecha: ${gasto.fecha}\n")
+                    // Calcular el mensaje con el porcentaje y el comentario
+                    val mensaje = when {
+                        it < 30 -> "Tus gastos están por debajo del 30% de tus ingresos: ${String.format("%.2f%%", it)}. ¡Excelente gestión!"
+                        it < 50 -> "Tus gastos representan entre el 30% y el 50% de tus ingresos: ${String.format("%.2f%%", it)}. Considera revisar tus gastos."
+                        else -> "Tus gastos superan el 50% de tus ingresos: ${String.format("%.2f%%", it)}. Te recomendamos ajustar tu presupuesto."
                     }
-
-                    textViewGastoRecurrente?.text = stringBuilder.toString()
-                } else {
-                    textViewGastoRecurrente?.text = "No hay gastos recurrentes este mes."
+                    // Actualizar el TextView con el mensaje completo
+                    textViewGastoPorcentaje?.text = mensaje
                 }
             }
-        }
+
 
     }
 
@@ -119,6 +124,5 @@ class FragmentProyecciones : Fragment() {
         val formatoMes = SimpleDateFormat("MMMM", Locale.getDefault())
         return formatoMes.format(Date())
     }
-
 }
 

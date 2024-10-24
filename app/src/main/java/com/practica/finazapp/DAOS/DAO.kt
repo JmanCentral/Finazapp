@@ -141,6 +141,9 @@ interface GastoDao {
     @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId AND descripcion LIKE '%recurrente%'")
     fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>>
 
+    @Query("SELECT (SELECT SUM(valor) FROM Gasto WHERE idUsuario = :usuarioId) / (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId) * 100 AS porcentajeGastos")
+    fun getPorcentajeGastosSobreIngresos(usuarioId: Long): LiveData<Double>
+
 }
 
 
