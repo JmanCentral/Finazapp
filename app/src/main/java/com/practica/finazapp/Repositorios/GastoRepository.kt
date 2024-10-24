@@ -32,7 +32,6 @@ class GastoRepository(private val gastoDao: GastoDao) {
         return gastoDao.getGastosPorFechas(idUsuario,fechaInf,fechaSup)
     }
 
-    // GastoRepository
     fun getGastosOrdenados(usuarioId: Long): LiveData<List<Gasto>> {
         return gastoDao.getGastosOrdenados(usuarioId)
     }
@@ -48,6 +47,16 @@ class GastoRepository(private val gastoDao: GastoDao) {
         return gastoDao.getGastoMasAlto(usuarioId)
     }
     fun getGastoMasBajp(usuarioId: Long): LiveData<Gasto> {
-        return gastoDao.getGastoMasAlto(usuarioId)
+        return gastoDao.getGastoMasBajo(usuarioId)
     }
+
+    fun getPromedioGastosMes(usuarioId: Long): LiveData<Double> {
+        return gastoDao.getPromedioGastosMes(usuarioId)
+    }
+
+    fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>> {
+        return gastoDao.getGastosRecurrentes(usuarioId)
+    }
+
+
 }

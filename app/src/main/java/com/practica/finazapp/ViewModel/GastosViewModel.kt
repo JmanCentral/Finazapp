@@ -77,4 +77,13 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
         return repository.getGastoMasBajp(usuarioId)
 
     }
+
+    fun getPromedioGastosMes(usuarioId: Long): LiveData<Double> {
+        return repository.getPromedioGastosMes(usuarioId)
+    }
+
+    fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>> {
+        return repository.getGastosRecurrentes(usuarioId)
+
+    }
 }

@@ -134,6 +134,13 @@ interface GastoDao {
 
     @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId ORDER BY valor ASC LIMIT 1")
     fun getGastoMasBajo(usuarioId: Long): LiveData<Gasto>
+
+    @Query("SELECT AVG(valor) FROM Gasto WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now') AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now')")
+    fun getPromedioGastosMes(usuarioId: Long): LiveData<Double>
+
+    @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId AND descripcion LIKE '%recurrente%'")
+    fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>>
+
 }
 
 

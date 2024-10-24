@@ -65,7 +65,6 @@ dependencies {
     implementation("com.github.lecho:hellocharts-library:1.5.8@aar")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-
     // Reemplazar con la versión de lifecycle adecuada
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -73,7 +72,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.activity:activity:1.9.2")
     implementation("androidx.work:work-runtime-ktx:2.9.1")
-
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")

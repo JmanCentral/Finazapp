@@ -14,6 +14,9 @@ import com.practica.finazapp.ViewModel.GastosViewModel
 import com.practica.finazapp.ViewModel.IngresoViewModel
 import com.practica.finazapp.ViewModel.SharedViewModel
 import com.practica.finazapp.databinding.FragmentProyeccionesBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class FragmentProyecciones : Fragment() {
@@ -83,6 +86,39 @@ class FragmentProyecciones : Fragment() {
 
         }
 
+        gastosViewModel.getPromedioGastosMes(usuarioId).observe(viewLifecycleOwner) { promedio ->
+            promedio?.let {
+                val textViewGastoPromedio = view?.findViewById<TextView>(R.id.textpromedio)
+                val mesActual = obtenerMesActual()
+                val mensaje = "El promedio de gastos del mes de $mesActual es de \$${String.format("%.2f", it)}"
+                textViewGastoPromedio?.text = mensaje
+            }
+        }
+
+        gastosViewModel.getGastosRecurrentes(usuarioId).observe(viewLifecycleOwner) { recurrentes ->
+            recurrentes?.let {
+                val textViewGastoRecurrente = view?.findViewById<TextView>(R.id.textRecurrente)
+
+                if (recurrentes.isNotEmpty()) {
+                    val stringBuilder = StringBuilder()
+
+                    recurrentes.forEach { gasto ->
+                        stringBuilder.append("Descripción: ${gasto.descripcion}, Valor: \$${gasto.valor}, Fecha: ${gasto.fecha}\n")
+                    }
+
+                    textViewGastoRecurrente?.text = stringBuilder.toString()
+                } else {
+                    textViewGastoRecurrente?.text = "No hay gastos recurrentes este mes."
+                }
+            }
+        }
+
     }
+
+    fun obtenerMesActual(): String {
+        val formatoMes = SimpleDateFormat("MMMM", Locale.getDefault())
+        return formatoMes.format(Date())
+    }
+
 }
 
