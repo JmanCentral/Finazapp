@@ -61,7 +61,7 @@ class GastoRepository(private val gastoDao: GastoDao) {
     fun getPorcentajesGastosSobreIngresos(usuarioId: Long): LiveData<Double> {
         return gastoDao.getPorcentajeGastosSobreIngresos(usuarioId)
     }
-
+//Ajustes Finales
 
 
 
