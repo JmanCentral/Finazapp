@@ -40,11 +40,11 @@ class AlertaViewModel(application: Application) : AndroidViewModel(application) 
     }
     fun eliminarAlerta(id: Long) {
 
-            repository.eliminarAlerta(id)
+        repository.eliminarAlerta(id)
     }
     fun modificarAlerta( fecha: String, valor: Double, id: Long) {
 
-            repository.modificarAlerta(fecha, valor, id)
+        repository.modificarAlerta(fecha, valor, id)
     }
     fun truncarAlertas() {
         viewModelScope.launch {
@@ -54,3 +54,4 @@ class AlertaViewModel(application: Application) : AndroidViewModel(application) 
 
 
 }
+

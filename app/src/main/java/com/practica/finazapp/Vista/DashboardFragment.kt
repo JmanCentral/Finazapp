@@ -216,7 +216,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                     dialog.show()
                 }
             }
-            }
+        }
 
     }
 
@@ -424,7 +424,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                     val porcentajeGastosVarios = (cantidadGastosVarios / ingresoMensual) * 100
                     if (porcentajeGastosVarios > obtenerLimitePorCategoria("Gastos Hormiga", ingresoMensual)) {
                         mostrarAdvertencia("Gastos Hormiga", porcentajeGastosVarios)
-        }
+                    }
                 }
             }
 
@@ -788,3 +788,4 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         return color
     }
 }
+
