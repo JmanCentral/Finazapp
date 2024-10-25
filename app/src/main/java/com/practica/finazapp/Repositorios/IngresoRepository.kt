@@ -7,7 +7,7 @@ import com.practica.finazapp.Entidades.Ingreso
 class IngresoRepository(private val ingresoDao: IngresoDao) {
     fun getAllIngresos(): LiveData<List<Ingreso>> = ingresoDao.getAll()
 
-     fun insertIngreso(ingreso: Ingreso){
+    fun insertIngreso(ingreso: Ingreso){
         ingresoDao.insert(ingreso)
     }
 

@@ -16,7 +16,8 @@ class GastoListaAdapter(private val gastos: List<Gasto>) :
     private var listener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GastoListaViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_lista, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_lista, parent, false)
         return GastoListaViewHolder(itemView)
     }
 

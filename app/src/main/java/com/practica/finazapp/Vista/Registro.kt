@@ -42,7 +42,8 @@ class Registro : AppCompatActivity() {
         val txtAdvertencia = findViewById<TextView>(R.id.Advertencia)
 
         // Expresión regular para validar la contraseña
-        val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}\$")
+        val regex =
+            Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}\$")
 
         btnRegistro1.setOnClickListener {
             val nombres = txtInputNombres.text.toString()
@@ -84,7 +85,7 @@ class Registro : AppCompatActivity() {
             insertarUsuario(nuevoUsuario)
         }
 
-        btnVolver.setOnClickListener{
+        btnVolver.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
             finish()
