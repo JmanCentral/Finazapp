@@ -45,3 +45,4 @@
         app:itemTextAppearance="@style/AppTheme.NavigationViewTextStyle" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
