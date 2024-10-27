@@ -249,7 +249,7 @@ class Graficos_Avanzados : Fragment() {
         val fechaFin = "2024-12-31"
 
         gastosViewModel.getGastosPorFechas(usuarioId, fechaInicio, fechaFin).observe(viewLifecycleOwner) { gastos ->
-            if (gastos != null && gastos.isNotEmpty()) {
+
                 val entries = mutableListOf<Entry>()
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
@@ -305,9 +305,15 @@ class Graficos_Avanzados : Fragment() {
 
                 // Refrescar el gráfico
                 lineChart.invalidate()
-            }
+
         }
     }
+
+
+     private fun Ingresoschart() {
+
+
+     }
 
 
 }

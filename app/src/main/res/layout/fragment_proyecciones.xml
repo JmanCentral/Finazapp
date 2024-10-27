@@ -19,160 +19,158 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/Proyecciones"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textViewGastoMasAlto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:text="El Gasto más Alto es..."
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/imageViewGasto"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/alto"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagen de gasto" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textViewGastoMasBajo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:text="El gasto más bajo es..."
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:id="@+id/imageViewGasto1"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/feliz"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagen de gasto" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textpromedio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:text="Recomendación 3"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:id="@+id/imageViewGasto2"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/promedio"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagen de gasto" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textRecurrente"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:text="Recomendación 4"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:id="@+id/imageViewGasto3"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/facturacion"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagen de gasto" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/textViewGastoMasAlto"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
-                android:text="El Gasto más Alto es....."
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <!-- Imagen ocupando la otra mitad de la CardView -->
-            <ImageView
-                android:id="@+id/imageViewGasto"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:src="@drawable/alto"
-                android:scaleType="centerCrop"
-                android:contentDescription="Imagen de gasto"
-                android:layout_gravity="center" />
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="50sp"
+                tools:ignore="MissingConstraints" />
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/cardView1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- Texto ocupando la mitad del espacio -->
-            <TextView
-                android:id="@+id/textViewGastoMasBajo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
-                android:text="El gasto mas bajo es..."
-                android:textSize="18sp"
-                android:textColor="@android:color/black" />
-
-            <ImageView
-                android:id="@+id/imageViewGasto1"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:src="@drawable/feliz"
-                android:scaleType="centerCrop"
-                android:contentDescription="Imagen de gasto"
-                android:layout_gravity="center" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/cardView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textpromedio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="16dp"
-            android:text="Recomendación 3"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
-
-            <ImageView
-                android:id="@+id/imageViewGasto2"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:src="@drawable/promedio"
-                android:scaleType="centerCrop"
-                android:contentDescription="Imagen de gasto"
-                android:layout_gravity="center" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/cardView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textRecurrente"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="16dp"
-            android:text="Recomendacion 4"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
-
-            <ImageView
-                android:id="@+id/imageViewGasto3"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:src="@drawable/facturacion"
-                android:scaleType="centerCrop"
-                android:contentDescription="Imagen de gasto"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-
-
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
