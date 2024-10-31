@@ -86,7 +86,8 @@ interface IngresoDao {
 
     @Query("UPDATE Ingreso set tipo = 'mensual Inactivo' WHERE descripcion = :descripcion")
     fun desactivarIngPasado(descripcion: String)
-
+    @Query("SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId AND tipo = :tipo")
+    fun getTotalIngresosPorTipo(usuarioId: Long, tipo: String): LiveData<Double>
 }
 
 @Dao
@@ -185,6 +186,9 @@ interface AlertaDao {
     // Obtener la suma de valores de alertas en un mes específico para un usuario
     @Query("SELECT SUM(valor) FROM Alerta WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now') AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now')")
     fun getValorTotalAlertasDeEsteMes(usuarioId: Long): LiveData<Double>
+
+
+
 
 }
 

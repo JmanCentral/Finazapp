@@ -63,6 +63,4 @@ class GastoRepository(private val gastoDao: GastoDao) {
     }
 
 
-
-
 }

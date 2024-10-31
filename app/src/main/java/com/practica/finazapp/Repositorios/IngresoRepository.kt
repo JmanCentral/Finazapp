@@ -45,4 +45,11 @@ class IngresoRepository(private val ingresoDao: IngresoDao) {
     fun desactivarIngPasado(descripcion: String){
         ingresoDao.desactivarIngPasado(descripcion)
     }
+
+    fun getTotalIngresosPorTipo(usuarioId: Long, tipo: String): LiveData<Double> {
+        return ingresoDao.getTotalIngresosPorTipo(usuarioId, tipo)
+    }
+
+
+
 }
