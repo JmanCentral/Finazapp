@@ -22,7 +22,7 @@ class FragmentProyecciones : Fragment() {
 
     private var usuarioId: Long = -1
     private lateinit var sharedViewModel: SharedViewModel
-    private lateinit var ingresoViewModel: IngresoViewModel
+    private lateinit var ingresosViewModel: IngresoViewModel
     private lateinit var gastosViewModel: GastosViewModel
     private lateinit var alertaViewModel: AlertaViewModel
 
@@ -49,6 +49,7 @@ class FragmentProyecciones : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
+        ingresosViewModel = ViewModelProvider(this)[IngresoViewModel::class.java]
         gastosViewModel = ViewModelProvider(this)[GastosViewModel::class.java]
         sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
@@ -117,10 +118,6 @@ class FragmentProyecciones : Fragment() {
                     textViewGastoPorcentaje?.text = mensaje
                 }
             }
-
-
-
-
 
     }
 

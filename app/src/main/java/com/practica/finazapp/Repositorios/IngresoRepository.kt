@@ -51,5 +51,4 @@ class IngresoRepository(private val ingresoDao: IngresoDao) {
     }
 
 
-
 }

@@ -89,6 +89,7 @@ interface IngresoDao {
 
     @Query("SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId AND tipo = :tipo")
     fun getTotalIngresosPorTipo(usuarioId: Long, tipo: String): LiveData<Double>
+
 }
 
 @Dao

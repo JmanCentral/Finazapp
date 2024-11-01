@@ -71,4 +71,5 @@ class IngresoViewModel(application: Application) :AndroidViewModel(application) 
        return  repository.getTotalIngresosPorTipo(usuarioId , tipo)
     }
 
+
 }
