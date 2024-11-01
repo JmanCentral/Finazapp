@@ -66,4 +66,9 @@ class IngresoViewModel(application: Application) :AndroidViewModel(application) 
     fun desactivarIngPasado(descripcion: String) {
         repository.desactivarIngPasado(descripcion)
     }
+
+    fun getIngresoTotalTipo (usuarioId: Long, tipo: String): LiveData<Double> {
+       return  repository.getTotalIngresosPorTipo(usuarioId , tipo)
+    }
+
 }

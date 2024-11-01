@@ -107,15 +107,19 @@ class FragmentProyecciones : Fragment() {
                     val textViewGastoPorcentaje = view?.findViewById<TextView>(R.id.textRecurrente)
 
                     // Calcular el mensaje con el porcentaje y el comentario
+
                     val mensaje = when {
                         it < 30 -> "Tus gastos están por debajo del 30% de tus ingresos: ${String.format("%.2f%%", it)}. ¡Excelente gestión!"
-                        it < 50 -> "Tus gastos representan entre el 30% y el 50% de tus ingresos: ${String.format("%.2f%%", it)}. Considera revisar tus gastos."
+                        it in 30.0..50.0  -> "Tus gastos representan entre el 30% y el 50% de tus ingresos: ${String.format("%.2f%%", it)}. Considera revisar tus gastos."
                         else -> "Tus gastos superan el 50% de tus ingresos: ${String.format("%.2f%%", it)}. Te recomendamos ajustar tu presupuesto."
                     }
                     // Actualizar el TextView con el mensaje completo
                     textViewGastoPorcentaje?.text = mensaje
                 }
             }
+
+
+
 
 
     }
