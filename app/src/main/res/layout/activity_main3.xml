@@ -14,6 +14,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="300dp"
         android:text="Menu Principal"
+        android:textColor="@color/amarillo_oscuro"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

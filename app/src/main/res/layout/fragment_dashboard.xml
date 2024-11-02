@@ -84,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/gastos_varios"
+                    android:textColor="@color/amarillo_oscuro"
                     app:layout_constraintBottom_toBottomOf="@id/imgGastosVarios"
                     app:layout_constraintStart_toEndOf="@id/imgGastosVarios" />
 
@@ -153,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/alimentos"
+                    android:textColor="@color/amarillo_oscuro"
                     app:layout_constraintBottom_toBottomOf="@id/imgAlimentos"
                     app:layout_constraintStart_toEndOf="@id/imgAlimentos" />
 
@@ -226,6 +228,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/transporte"
+                    android:textColor="@color/amarillo_oscuro"
                     app:layout_constraintBottom_toBottomOf="@id/imgTransporte"
                     app:layout_constraintStart_toEndOf="@id/imgTransporte" />
 
@@ -296,6 +299,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/servicios"
+                    android:textColor="@color/amarillo_oscuro"
                     app:layout_constraintBottom_toBottomOf="@id/imgServicios"
                     app:layout_constraintStart_toEndOf="@id/imgServicios" />
 
@@ -367,6 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/mercado"
+                    android:textColor="@color/amarillo_oscuro"
                     app:layout_constraintBottom_toBottomOf="@id/imgMercado"
                     app:layout_constraintStart_toEndOf="@id/imgMercado" />
 
@@ -437,6 +442,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/disponible"
+                    android:textColor="@color/amarillo_oscuro"
                     app:layout_constraintBottom_toBottomOf="@id/imgDisponible"
                     app:layout_constraintStart_toEndOf="@id/imgDisponible" />
 

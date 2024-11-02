@@ -43,13 +43,12 @@
             style="@style/TxtNegroMedianoItalic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/nombres"
-            app:layout_constraintTop_toBottomOf ="@id/linea_verde"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/amarillo_oscuro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linea_verde" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,13 +78,12 @@
             style="@style/TxtNegroMedianoItalic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/apellidos"
-            app:layout_constraintTop_toBottomOf ="@id/wrapperinputNombres"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/amarillo_oscuro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wrapperinputNombres" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/wrapperinputApellidos"
@@ -112,13 +110,12 @@
             style="@style/TxtNegroMedianoItalic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/usuario"
-            app:layout_constraintTop_toBottomOf ="@id/wrapperinputApellidos"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/amarillo_oscuro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wrapperinputApellidos" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/wrapperinputUsuario"
@@ -146,13 +143,12 @@
             style="@style/TxtNegroMedianoItalic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/contrasena1"
-            app:layout_constraintTop_toBottomOf ="@id/wrapperinputUsuario"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/amarillo_oscuro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wrapperinputUsuario" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/wrapperinputContrasena2"
@@ -180,13 +176,12 @@
             style="@style/TxtNegroMedianoItalic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/conf_contrasena"
-            app:layout_constraintTop_toBottomOf ="@id/wrapperinputContrasena2"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/amarillo_oscuro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wrapperinputContrasena2" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/wrapperinputConf"
