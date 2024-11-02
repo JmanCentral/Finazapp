@@ -19,6 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.mindrot.jbcrypt.BCrypt
+import androidx.appcompat.app.AlertDialog
+
 
 class Registro : AppCompatActivity() {
 
@@ -44,6 +46,9 @@ class Registro : AppCompatActivity() {
         // Expresión regular para validar la contraseña
         val regex =
             Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}\$")
+
+        mostrarDialogoNombres()
+        mostrarDialogoApellidos()
 
         btnRegistro1.setOnClickListener {
             val nombres = txtInputNombres.text.toString()
@@ -90,7 +95,33 @@ class Registro : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
     }
+
+    // AlertDialog para los Nombres
+    private fun mostrarDialogoNombres() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Uso de los Nombres")
+        builder.setMessage("Tus nombres serán usados de forma segura en la aplicación únicamente para identificarte y mejorar tu experiencia de usuario.")
+        builder.setPositiveButton("Entendido") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.create().show()
+    }
+
+    // AlertDialog para los Apellidos
+    private fun mostrarDialogoApellidos() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Uso de los Apellidos")
+        builder.setMessage("Tus apellidos serán usados de forma segura en la aplicación únicamente para fines de personalización y gestión de tu cuenta.")
+        builder.setPositiveButton("Entendido") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.create().show()
+    }
+
+
 
 
     private fun insertarUsuario(usuario: Usuario) {
