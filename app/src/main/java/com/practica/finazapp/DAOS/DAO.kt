@@ -90,6 +90,10 @@ interface IngresoDao {
     @Query("SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId AND tipo = :tipo")
     fun getTotalIngresosPorTipo(usuarioId: Long, tipo: String): LiveData<Double>
 
+    @Query("SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now', '-1 month') AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now', '-1 month')")
+    fun getIngTotalMesAnterior(usuarioId: Long): LiveData<Double>
+
+
 }
 
 @Dao

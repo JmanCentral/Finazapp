@@ -119,6 +119,30 @@ class FragmentProyecciones : Fragment() {
                 }
             }
 
+        // Observa el ingreso total del mes actual
+        ingresosViewModel.getIngTotalDeEsteMes(usuarioId).observe(viewLifecycleOwner) { totalIngresosMesActual ->
+            // Observa el ingreso total del mes anterior
+            ingresosViewModel.getIngTotalMesAnterior(usuarioId).observe(viewLifecycleOwner) { totalIngresosMesAnterior ->
+
+                // Verifica que ambos valores no sean nulos antes de realizar la comparación
+                if (totalIngresosMesActual != null && totalIngresosMesAnterior != null) {
+                    val textViewTotalIngresos = view?.findViewById<TextView>(R.id.textIngresos)
+
+                    val mensaje = if (totalIngresosMesAnterior > totalIngresosMesActual) {
+                        "Ingresos del mes actual: $${String.format("%.2f", totalIngresosMesActual)}.\n" +
+                                "El ingreso del mes anterior fue mayor. ¡Es necesario mejorar este mes!"
+                    } else {
+                        "Ingresos del mes actual: $${String.format("%.2f", totalIngresosMesActual)}.\n" +
+                                "Vas mejorando en tus ingresos. ¡Buen trabajo!"
+                    }
+
+                    textViewTotalIngresos?.text = mensaje
+                }
+            }
+        }
+
+
+
     }
 
     fun obtenerMesActual(): String {

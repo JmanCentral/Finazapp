@@ -50,5 +50,9 @@ class IngresoRepository(private val ingresoDao: IngresoDao) {
         return ingresoDao.getTotalIngresosPorTipo(usuarioId, tipo)
     }
 
+    fun getIngTotalMesAnterior(usuarioId: Long): LiveData<Double> {
+        return ingresoDao.getIngTotalMesAnterior(usuarioId)
+    }
+
 
 }
