@@ -71,5 +71,9 @@ class IngresoViewModel(application: Application) :AndroidViewModel(application) 
        return  repository.getTotalIngresosPorTipo(usuarioId , tipo)
     }
 
+    fun getIngTotalMesAnterior(usuarioId: Long): LiveData<Double> {
+        return repository.getIngTotalMesAnterior(usuarioId)
+    }
+
 
 }
