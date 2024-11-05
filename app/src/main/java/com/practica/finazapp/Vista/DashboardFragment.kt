@@ -679,15 +679,15 @@ class DashboardFragment : Fragment(), OnItemClickListener {
     }
 
 
-    fun cargarBarraDisp(cantidad: Double, barra: View) {
-        gastosViewModel.getValorGastosMes(usuarioId).observe(viewLifecycleOwner) { gastosMes ->
-            if (gastosMes > 0) {
-                if( cantidad >= 0) {
+    fun cargarBarraDisp(cantidad: Double?, barra: View) {
+        if (cantidad != null && cantidad >= 0) {
+            gastosViewModel.getValorGastosMes(usuarioId).observe(viewLifecycleOwner) { gastosMes ->
+                if (gastosMes != null && gastosMes > 0) {
                     val barraGris = binding.barraGrisDisponible
                     val cien = barraGris.width
-                    val total = gastosMes+cantidad
+                    val total = gastosMes + cantidad
                     val layoutParams = barra.layoutParams as ConstraintLayout.LayoutParams
-                    layoutParams.width = ((cien*cantidad)/total).toInt()
+                    layoutParams.width = ((cien * cantidad) / total).toInt()
                     barra.layoutParams = layoutParams
                     barra.visibility = View.VISIBLE
                 }
