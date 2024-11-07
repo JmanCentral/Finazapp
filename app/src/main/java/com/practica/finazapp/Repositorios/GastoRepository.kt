@@ -1,6 +1,7 @@
 package com.practica.finazapp.Repositorios
 
 import androidx.lifecycle.LiveData
+import com.practica.finazapp.DAOS.CategoriaTotal
 import com.practica.finazapp.DAOS.GastoDao
 import com.practica.finazapp.Entidades.Gasto
 
@@ -60,6 +61,10 @@ class GastoRepository(private val gastoDao: GastoDao) {
 
     fun getPorcentajesGastosSobreIngresos(usuarioId: Long): LiveData<Double> {
         return gastoDao.getPorcentajeGastosSobreIngresos(usuarioId)
+    }
+
+    fun getCategoriasConMasGastos(usuarioId: Long): LiveData<List<CategoriaTotal>> {
+        return gastoDao.getCategoriasConMasGastos(usuarioId)
     }
 
 }

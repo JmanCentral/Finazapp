@@ -93,6 +93,9 @@ interface IngresoDao {
     @Query("SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now', '-1 month') AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now', '-1 month')")
     fun getIngTotalMesAnterior(usuarioId: Long): LiveData<Double>
 
+    @Query("SELECT SUM(valor) * 1.05 FROM Ingreso WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now') AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now') AND tipo = 'mensual'")
+    fun proyectarIngresosMensuales(usuarioId: Long): LiveData<Double>
+
 
 }
 
@@ -150,6 +153,11 @@ interface GastoDao {
 
     @Query("SELECT (SELECT SUM(valor) FROM Gasto WHERE idUsuario = :usuarioId) / (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId) * 100 AS porcentajeGastos")
     fun getPorcentajeGastosSobreIngresos(usuarioId: Long): LiveData<Double>
+
+    @Query("SELECT categoria, SUM(valor) as totalValor FROM Gasto WHERE idUsuario = :usuarioId GROUP BY categoria ORDER BY totalValor DESC")
+    fun getCategoriasConMasGastos(usuarioId: Long): LiveData<List<CategoriaTotal>>
+
+
 
 }
 

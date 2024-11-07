@@ -1,6 +1,7 @@
 package com.practica.finazapp.Repositorios
 
 import androidx.lifecycle.LiveData
+import com.practica.finazapp.DAOS.CategoriaTotal
 import com.practica.finazapp.DAOS.IngresoDao
 import com.practica.finazapp.Entidades.Ingreso
 
@@ -52,6 +53,10 @@ class IngresoRepository(private val ingresoDao: IngresoDao) {
 
     fun getIngTotalMesAnterior(usuarioId: Long): LiveData<Double> {
         return ingresoDao.getIngTotalMesAnterior(usuarioId)
+    }
+
+    fun proyectarIngresosMensuales(usuarioId: Long): LiveData<Double> {
+        return ingresoDao.proyectarIngresosMensuales(usuarioId)
     }
 
 

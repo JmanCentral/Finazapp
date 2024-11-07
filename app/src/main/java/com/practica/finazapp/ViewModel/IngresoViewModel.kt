@@ -75,5 +75,10 @@ class IngresoViewModel(application: Application) :AndroidViewModel(application) 
         return repository.getIngTotalMesAnterior(usuarioId)
     }
 
+    fun getProyectar(usuarioId: Long): LiveData<Double> {
+        return repository.proyectarIngresosMensuales(usuarioId)
+
+    }
+
 
 }

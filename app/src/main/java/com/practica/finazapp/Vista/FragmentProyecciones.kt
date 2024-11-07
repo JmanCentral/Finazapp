@@ -141,7 +141,29 @@ class FragmentProyecciones : Fragment() {
             }
         }
 
+        ingresosViewModel.getProyectar(usuarioId).observe(viewLifecycleOwner) { proyectado ->
+            proyectado?.let {
 
+                val textViewProyectado = view?.findViewById<TextView>(R.id.textProyeciones)
+                val mensaje = "Ingresos proyectados para el siguiente mes : $${String.format("%.2f", it)}"
+                textViewProyectado?.text = mensaje
+
+            }
+        }
+
+        gastosViewModel.getCategoriasConMasGastos(usuarioId).observe(viewLifecycleOwner) { listaCategorias ->
+            if (!listaCategorias.isNullOrEmpty()) {
+                val categoriaMasGasto = listaCategorias.first() // Obtiene la categoría con el mayor gasto
+                mostrarRecomendacion(categoriaMasGasto.categoria, categoriaMasGasto.totalValor)
+            }
+        }
+    }
+
+    fun mostrarRecomendacion(categoria: String, totalValor: Double) {
+
+        val textViewRecomendacion = view?.findViewById<TextView>(R.id.textRecomendacion)
+        val mensaje =  "Revisa tus gastos en $categoria, ya que suman $totalValor"
+        textViewRecomendacion?.text = mensaje
 
     }
 
