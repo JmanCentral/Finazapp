@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.practica.finazapp.DAOS.AppDatabase
 import com.practica.finazapp.DAOS.CategoriaTotal
+import com.practica.finazapp.DAOS.GastoPromedio
 import com.practica.finazapp.Entidades.Gasto
 import com.practica.finazapp.Repositorios.GastoRepository
 import kotlinx.coroutines.Dispatchers
@@ -94,4 +95,16 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
     fun getCategoriasConMasGastos(usuarioId: Long): LiveData<List<CategoriaTotal>> {
         return repository.getCategoriasConMasGastos(usuarioId)
     }
+
+    fun gastopromediomes(usuarioId: Long): LiveData<List<GastoPromedio>>
+    {
+        return repository.getpromediodiario(usuarioId)
+    }
+
+    fun gastopromediodiario(usuarioId: Long): LiveData<Double> {
+        return repository.getPromedioDiario(usuarioId)
+
+    }
+
+
 }

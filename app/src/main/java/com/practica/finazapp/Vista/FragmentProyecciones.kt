@@ -157,7 +157,18 @@ class FragmentProyecciones : Fragment() {
                 mostrarRecomendacion(categoriaMasGasto.categoria, categoriaMasGasto.totalValor)
             }
         }
+
+        gastosViewModel.gastopromediodiario(usuarioId).observe(viewLifecycleOwner) { gastosPromedioDiario ->
+
+            gastosPromedioDiario?.let{
+                val textViewPromedioDiario = view?.findViewById<TextView>(R.id.textRecomendacion1)
+                val mensaje = "El promedio diario de tus gastos es de  : $${String.format("%.2f", it)}"
+                textViewPromedioDiario?.text = mensaje
+
+            }
+        }
     }
+
 
     fun mostrarRecomendacion(categoria: String, totalValor: Double) {
 
@@ -167,9 +178,10 @@ class FragmentProyecciones : Fragment() {
 
     }
 
+
+
     fun obtenerMesActual(): String {
         val formatoMes = SimpleDateFormat("MMMM", Locale.getDefault())
         return formatoMes.format(Date())
     }
 }
-

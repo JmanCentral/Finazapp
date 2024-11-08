@@ -10,7 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="260dp"
         android:layout_margin="8dp"
         cardview:cardCornerRadius="8dp"
         cardview:cardElevation="4dp">
@@ -27,8 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/dineroo"
-                />
+                android:src="@drawable/dineroo" />
 
             <TextView
                 android:id="@+id/Viewdescripcion"

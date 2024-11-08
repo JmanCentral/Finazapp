@@ -157,6 +157,11 @@ interface GastoDao {
     @Query("SELECT categoria, SUM(valor) as totalValor FROM Gasto WHERE idUsuario = :usuarioId GROUP BY categoria ORDER BY totalValor DESC")
     fun getCategoriasConMasGastos(usuarioId: Long): LiveData<List<CategoriaTotal>>
 
+    @Query("SELECT categoria, AVG(valor) AS gastoPromedio FROM Gasto WHERE idUsuario = :usuarioId GROUP BY categoria")
+    fun getGastoPromedioPorCategoria(usuarioId: Long): LiveData<List<GastoPromedio>>
+
+    @Query("SELECT SUM(valor) / COUNT(DISTINCT fecha) AS gastoPromedioDiario FROM Gasto WHERE idUsuario = :usuarioId")
+    fun getGastoPromedioDiarioTotal(usuarioId: Long): LiveData<Double>
 
 
 }

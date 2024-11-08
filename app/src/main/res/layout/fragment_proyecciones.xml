@@ -20,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ScrollView con un LinearLayout interno para los CardViews -->
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
@@ -240,7 +239,7 @@
                         android:layout_weight="1"
                         android:contentDescription="Imagen de gasto"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ingreso" />
+                        android:src="@drawable/calidad" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -274,15 +273,49 @@
                         android:layout_weight="1"
                         android:contentDescription="Imagen de gasto"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ingreso" />
+                        android:src="@drawable/recomendacion" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textRecomendacion1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:text="Recomendacion 6"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/imageViewGasto7"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:contentDescription="Imagen de gasto"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/sugerencia" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="73dp"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
+                android:textSize="35sp"
                 tools:ignore="MissingConstraints" />
 
         </LinearLayout>
