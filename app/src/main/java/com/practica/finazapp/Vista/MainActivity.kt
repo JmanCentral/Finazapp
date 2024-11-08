@@ -21,8 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         // Inicializar la base de datos
         db = AppDatabase.getDatabase(applicationContext)
 
