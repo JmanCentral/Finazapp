@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/graficos_Avanzados"
-        android:title="Analysis"
+        android:title="Análisis"
         android:icon="@drawable/dash"
         />
 

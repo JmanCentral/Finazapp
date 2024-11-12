@@ -119,6 +119,7 @@ class FragmentProyecciones : Fragment() {
                 }
             }
 
+        /*
         // Observa el ingreso total del mes actual
         ingresosViewModel.getIngTotalDeEsteMes(usuarioId).observe(viewLifecycleOwner) { totalIngresosMesActual ->
             // Observa el ingreso total del mes anterior
@@ -140,6 +141,7 @@ class FragmentProyecciones : Fragment() {
                 }
             }
         }
+         */
 
         ingresosViewModel.getProyectar(usuarioId).observe(viewLifecycleOwner) { proyectado ->
             proyectado?.let {
