@@ -233,7 +233,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                                                 ).show()
                                             }
                                         } else {
-                                            // Validar que los campos no estén vacíos
+
                                             Toast.makeText(
                                                 requireContext(),
                                                 "Por favor complete todos los campos",
