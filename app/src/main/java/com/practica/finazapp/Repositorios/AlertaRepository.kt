@@ -29,9 +29,6 @@ class AlertaRepository(private val alertaDao: AlertaDao) {
     fun truncarAlertas(){
         alertaDao.truncarAlertas()
     }
-    fun getValorTotalAlertasDeEsteMes(usuarioId: Long): LiveData<Double> {
-        return alertaDao.getValorTotalAlertasDeEsteMes(usuarioId)
-    }
 
     fun insertAlerta(alerta: Alerta) {
         alertaDao.insert(alerta)
