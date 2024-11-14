@@ -1,6 +1,5 @@
-package com.practica.finazapp
+package com.practica.finazapp.TesteoRepositorios
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.practica.finazapp.DAOS.AlertaDao
 import com.practica.finazapp.Entidades.Alerta
@@ -33,6 +32,21 @@ class AlertaRepositoryTest {
         val result = repository.getAllAlertas()
         assertEquals(expectedAlertas, result)
     }
+
+    @Test
+    fun `insertAlerta should call insert method of alertaDao`() = runBlocking {
+        val alerta = Alerta(
+            nombre = "Aviso de presupuesto",
+            descripcion = "Presupuesto alcanzado",
+            fecha = "2024-11-20",
+            valor = 200.0,
+            idUsuario = 1L
+        )
+
+        repository.insertAlerta(alerta)
+        verify(alertaDao).insert(alerta)
+    }
+
 
     @Test
     fun `getAlertasPorUsuario should return LiveData list of alertas for specific user`() {
@@ -87,11 +101,4 @@ class AlertaRepositoryTest {
         verify(alertaDao).truncarAlertas()
     }
 
-    @Test
-    fun `insertAlerta should call insert method of alertaDao`() = runBlocking {
-        val alerta = Alerta(nombre = "Aviso de presupuesto", descripcion = "Presupuesto alcanzado", fecha = "2024-11-20", valor = 200.0, idUsuario = 1L)
-
-        repository.insertAlerta(alerta)
-        verify(alertaDao).insert(alerta)
-    }
 }

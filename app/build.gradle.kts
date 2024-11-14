@@ -71,6 +71,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.activity:activity:1.9.2")
     implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.test:core-ktx:1.6.1")
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
@@ -83,6 +84,10 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation ("org.mockito:mockito-core:4.0.0")
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation ("androidx.test:core:1.5.0")
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    testImplementation ("androidx.test.ext:junit:1.1.5")
+    testImplementation ("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation ("org.apache.commons:commons-math3:3.6.1")
     implementation ("org.mindrot:jbcrypt:0.4")
