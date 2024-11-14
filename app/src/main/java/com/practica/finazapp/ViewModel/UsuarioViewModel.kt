@@ -15,11 +15,15 @@ class UsuarioViewModel(application: Application) : AndroidViewModel(application)
 
     // LiveData para almacenar la lista de usuarios
     private val allUsuarios: LiveData<List<Usuario>>
-    private val repository: UsuarioRepository
+    private var repository: UsuarioRepository
     init {
         val userDao = AppDatabase.getDatabase(application).usuarioDao()
         repository = UsuarioRepository(userDao)
         allUsuarios = repository.getAllUsuarios()
+    }
+
+    constructor(application: Application, repository: UsuarioRepository) : this(application) {
+        this.repository = repository
     }
 
     // Función para insertar un nuevo usuario

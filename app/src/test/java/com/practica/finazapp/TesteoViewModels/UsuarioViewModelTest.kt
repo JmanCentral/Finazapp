@@ -1,5 +1,6 @@
 package com.practica.finazapp.TesteoViewModels
 
+import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,21 +13,24 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mock
 import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
 
 class UsuarioViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
-
     private lateinit var usuarioViewModel: UsuarioViewModel
+    @Mock
     private lateinit var usuarioRepository: UsuarioRepository
 
     @Before
     fun setUp() {
+        MockitoAnnotations.openMocks(this)
         usuarioRepository = mock(UsuarioRepository::class.java)
-        usuarioViewModel = UsuarioViewModel(ApplicationProvider.getApplicationContext())
-        usuarioViewModel = spy(UsuarioViewModel(ApplicationProvider.getApplicationContext()))
+        usuarioViewModel = UsuarioViewModel(mock(Application::class.java, RETURNS_DEEP_STUBS), usuarioRepository)// Simulando el contexto
+        usuarioViewModel = spy(usuarioViewModel)
     }
 
     @Test
