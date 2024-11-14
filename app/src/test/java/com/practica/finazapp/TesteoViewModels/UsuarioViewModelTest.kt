@@ -59,7 +59,7 @@ class UsuarioViewModelTest {
     @Test
     fun `test getUsuarioPorUsuario returns expected user`() {
         val nombreUsuario = "testUser"
-        val usuario = Usuario(1, nombreUsuario, "Test", "User", "123456", "test@example.com", "1234567890" , "1234567890")
+        val usuario = Usuario(1L, nombreUsuario, "Test", "User", "123456", "test@example.com", "1234567890" , "1234567890")
         val usuarioLiveData = MutableLiveData<Usuario?>()
         usuarioLiveData.value = usuario
 

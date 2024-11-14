@@ -34,20 +34,13 @@ class UsuarioViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun getUsuarioPorId(id: Long): LiveData<Usuario> {
-        return liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-            val usuario = repository.getUsuarioPorId(id)
-            emitSource(usuario)
-        }
+
+        return repository.getUsuarioPorId(id)
     }
 
 
     fun getUsuarioPorUsuario(nombreUsuario: String): LiveData<Usuario?> {
-        return liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-            // Observa el LiveData del repositorio
-            val usuarioLiveData = repository.getUsuarioPorUsuario(nombreUsuario)
-            // Emite el valor cuando esté disponible
-            emitSource(usuarioLiveData)
-        }
+        return repository.getUsuarioPorUsuario(nombreUsuario)
     }
 
 

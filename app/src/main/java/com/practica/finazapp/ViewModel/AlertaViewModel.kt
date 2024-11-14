@@ -14,27 +14,24 @@ import kotlinx.coroutines.launch
 class AlertaViewModel(application: Application) : AndroidViewModel(application) {
 
     private val allAlertas: LiveData<List<Alerta>>
-    private val repository: AlertaRepository
+    private var repository: AlertaRepository
 
     init {
         val alertaDao = AppDatabase.getDatabase(application).alertaDao()
         repository = AlertaRepository(alertaDao)
         allAlertas = repository.getAllAlertas()
     }
-    fun getAllAlertas(): LiveData<List<Alerta>> {
-        return allAlertas
+
+    constructor( application: Application, repository: AlertaRepository) : this(application){
+        this.repository = repository
     }
+
     fun insertAlerta(alerta: Alerta) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertAlerta(alerta)
         }
     }
-    fun getAlertasPorUsuario(usuarioId: Long): LiveData<List<Alerta>> {
-        return repository.getAlertasPorUsuario(usuarioId)
-    }
-    fun getAlertasDeEsteAno(usuarioId: Long): LiveData<List<Alerta>> {
-        return repository.getAlertasDeEsteAno(usuarioId)
-    }
+
     fun getAlertasDeEsteMes(usuarioId: Long): LiveData<List<Alerta>> {
         return repository.getAlertasDeEsteMes(usuarioId)
     }
@@ -45,11 +42,6 @@ class AlertaViewModel(application: Application) : AndroidViewModel(application) 
     fun modificarAlerta( fecha: String, valor: Double, id: Long) {
 
         repository.modificarAlerta(fecha, valor, id)
-    }
-    fun truncarAlertas() {
-        viewModelScope.launch {
-            repository.truncarAlertas()
-        }
     }
 
 

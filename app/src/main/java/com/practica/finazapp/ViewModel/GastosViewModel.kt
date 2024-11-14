@@ -16,12 +16,17 @@ import kotlinx.coroutines.launch
 class GastosViewModel(application: Application) :AndroidViewModel(application) {
 
     private val allGastos: LiveData<List<Gasto>>
-    private val repository: GastoRepository
+    private var repository: GastoRepository
 
     init {
         val gastoDao = AppDatabase.getDatabase(application).gastoDao()
         repository = GastoRepository(gastoDao)
         allGastos = repository.getAllGastos()
+    }
+
+    constructor( application: Application, repository: GastoRepository) : this(application){
+        this.repository = repository
+
     }
 
 
@@ -84,9 +89,6 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
         return repository.getPromedioGastosMes(usuarioId)
     }
 
-    fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>> {
-        return repository.getGastosRecurrentes(usuarioId)
-    }
 
     fun getPorcentajesGastosSobreIngresos(usuarioId: Long): LiveData<Double> {
         return repository.getPorcentajesGastosSobreIngresos(usuarioId)
@@ -94,11 +96,6 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
 
     fun getCategoriasConMasGastos(usuarioId: Long): LiveData<List<CategoriaTotal>> {
         return repository.getCategoriasConMasGastos(usuarioId)
-    }
-
-    fun gastopromediomes(usuarioId: Long): LiveData<List<GastoPromedio>>
-    {
-        return repository.getpromediodiario(usuarioId)
     }
 
     fun gastopromediodiario(usuarioId: Long): LiveData<Double> {

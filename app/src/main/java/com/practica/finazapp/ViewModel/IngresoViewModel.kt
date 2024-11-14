@@ -13,13 +13,19 @@ import kotlinx.coroutines.launch
 class IngresoViewModel(application: Application) :AndroidViewModel(application) {
 
     private val allIngresos: LiveData<List<Ingreso>>
-    private val repository: IngresoRepository
+    private var repository: IngresoRepository
 
     init {
         val ingresoDao = AppDatabase.getDatabase(application).ingresoDao()
         repository = IngresoRepository(ingresoDao)
         allIngresos = repository.getAllIngresos()
     }
+
+    constructor( application: Application, repository: IngresoRepository) : this(application){
+        this.repository = repository
+    }
+
+
 
     fun insertIngreso(ingreso: Ingreso) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -39,9 +45,6 @@ class IngresoViewModel(application: Application) :AndroidViewModel(application) 
         return repository.getIngTotalDeEsteMes(usuarioId)
     }
 
-    fun getAllIngresos(): LiveData<List<Ingreso>> {
-        return repository.getAllIngresos()
-    }
 
     fun verificacion(usuarioId: Long): LiveData<List<Ingreso>> {
         return repository.verificacion(usuarioId)
@@ -51,9 +54,6 @@ class IngresoViewModel(application: Application) :AndroidViewModel(application) 
         return repository.getIngresosMensuales(usuarioId, anio, mes)
     }
 
-    fun truncarIngresos() {
-        repository.truncarIngresos()
-    }
 
     fun modificarIngreso(fecha: String, valor: Double, id: Long) {
         repository.modificarIngreso(fecha, valor, id)
