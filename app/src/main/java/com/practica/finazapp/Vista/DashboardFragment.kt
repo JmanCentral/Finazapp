@@ -129,124 +129,120 @@ class DashboardFragment : Fragment(), OnItemClickListener {
 
         btnNuevoGasto.setOnClickListener {
 
-            // Obtener el total de ingresos
+
             ingresoViewModel.getIngTotalDeEsteMes(usuarioId)
                 .observe(viewLifecycleOwner) { totalIngresos ->
 
-                    // Obtener el saldo disponible
-                    gastosViewModel.getDisponible(usuarioId)
-                        .observe(viewLifecycleOwner) { saldoDisponible ->
 
-                            // Validar si no hay ingresos
-                            if (totalIngresos == null || totalIngresos == 0.0) {
-                                val builder = AlertDialog.Builder(requireContext())
-                                builder.setTitle("Aviso")
-                                builder.setMessage("Debes poner ingresos antes de registrar un gasto.")
-                                builder.setPositiveButton("OK") { dialog, _ ->
-                                    dialog.dismiss()
-                                }
-                                builder.create().show()
+                    lifecycleScope.launch {
 
-                                // Validar si el saldo disponible es menor que cero
-                            }  else {
-                                // Si hay ingresos y saldo disponible, proceder con el gasto
-                                val dialogView =
-                                    layoutInflater.inflate(R.layout.dialog_nuevo_gasto, null)
-                                val spinnerCategoria =
-                                    dialogView.findViewById<Spinner>(R.id.spinnerCategoria)
-                                val items = resources.getStringArray(R.array.categorias).toList()
-                                val adapter = CustomSpinnerAdapter(requireContext(), items)
-                                spinnerCategoria.adapter = adapter
-                                val editTextCantidad =
-                                    dialogView.findViewById<EditText>(R.id.editTextCantidad)
-                                val editTextFecha =
-                                    dialogView.findViewById<EditText>(R.id.editTextFecha)
-                                val editTextDescripcion =
-                                    dialogView.findViewById<EditText>(R.id.editTextDescripcion)
+                        val saldoDisponible = try {
+                            gastosViewModel.getDisponibleDirecto(usuarioId)
+                        } catch (e: Exception) {
+                            0.0
+                        }
 
-                                editTextFecha.setOnClickListener {
-                                    showDatePickerDialog(editTextFecha)
-                                }
+                        // Validar si no hay ingresos
+                        if (totalIngresos == null || totalIngresos == 0.0) {
+                            val builder = AlertDialog.Builder(requireContext())
+                            builder.setTitle("Aviso")
+                            builder.setMessage("Debes poner ingresos antes de registrar un gasto.")
+                            builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                            builder.create().show()
+                        } else {
+                            // Si hay ingresos y saldo disponible, proceder con el gasto
+                            val dialogView =
+                                layoutInflater.inflate(R.layout.dialog_nuevo_gasto, null)
+                            val spinnerCategoria =
+                                dialogView.findViewById<Spinner>(R.id.spinnerCategoria)
+                            val items = resources.getStringArray(R.array.categorias).toList()
+                            val adapter = CustomSpinnerAdapter(requireContext(), items)
+                            spinnerCategoria.adapter = adapter
+                            val editTextCantidad =
+                                dialogView.findViewById<EditText>(R.id.editTextCantidad)
+                            val editTextFecha =
+                                dialogView.findViewById<EditText>(R.id.editTextFecha)
+                            val editTextDescripcion =
+                                dialogView.findViewById<EditText>(R.id.editTextDescripcion)
 
-                                // Crear el diálogo de confirmación para guardar el gasto
-                                val dialog = AlertDialog.Builder(requireContext())
-                                    .setView(dialogView)
-                                    .setPositiveButton("Guardar") { dialog, _ ->
+                            editTextFecha.setOnClickListener {
+                                showDatePickerDialog(editTextFecha)
+                            }
 
-                                        val categoria = spinnerCategoria.selectedItem.toString()
-                                        val cantidad = editTextCantidad.text.toString()
-                                        val fechaOriginal = editTextFecha.text.toString()
-                                        val descripcion = editTextDescripcion.text.toString()
+                            val dialog = AlertDialog.Builder(requireContext())
+                                .setView(dialogView)
+                                .setPositiveButton("Guardar") { dialog, _ ->
 
-                                        // Validar campos obligatorios
-                                        if (categoria.isNotBlank() && cantidad.isNotBlank() && fechaOriginal.isNotBlank() && descripcion.isNotBlank()) {
-                                            try {
-                                                // Validar que la cantidad sea un número válido
-                                                val valor = cantidad.toDouble()
+                                    val categoria = spinnerCategoria.selectedItem.toString()
+                                    val cantidad = editTextCantidad.text.toString()
+                                    val fechaOriginal = editTextFecha.text.toString()
+                                    val descripcion = editTextDescripcion.text.toString()
 
-                                                // Verificar que el gasto no exceda el saldo disponible
-                                                if (valor > saldoDisponible) {
-                                                    val builder = AlertDialog.Builder(requireContext())
-                                                    builder.setTitle("Aviso")
-                                                    builder.setMessage("No tienes saldo suficiente para realizar este gasto. En FinazAPP pensamos en ti, elimina gastos que no necesitas.")
-                                                    builder.setPositiveButton("OK") { dialog, _ ->
-                                                        dialog.dismiss()
+
+                                    if (categoria.isNotBlank() && cantidad.isNotBlank() && fechaOriginal.isNotBlank() && descripcion.isNotBlank()) {
+                                        try {
+
+                                            val valor = cantidad.toDouble()
+
+                                            if (valor > saldoDisponible) {
+                                                val builder = AlertDialog.Builder(requireContext())
+                                                builder.setTitle("Aviso")
+                                                builder.setMessage("No tienes saldo suficiente para realizar este gasto. En FinazAPP pensamos en ti, elimina gastos que no necesitas.")
+                                                builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                                                builder.create().show()
+                                            } else {
+                                                val parts = fechaOriginal.split("/")
+                                                val dia = parts[0].padStart(2, '0')
+                                                val mes = parts[1].padStart(2, '0')
+                                                val anio = parts[2]
+                                                val fecha = "${anio}-${mes}-${dia}"
+
+                                                // Crear y guardar el nuevo gasto
+                                                val nuevoGasto = Gasto(
+                                                    categoria = categoria,
+                                                    fecha = fecha,
+                                                    valor = valor,
+                                                    descripcion = descripcion,
+                                                    idUsuario = usuarioId
+                                                )
+
+                                                lifecycleScope.launch {
+                                                    withContext(Dispatchers.IO) {
+                                                        // Inserción del gasto solo si la validación pasó
+                                                        gastosViewModel.insertGasto(nuevoGasto)
                                                     }
-                                                    builder.create().show()
-                                                } else {
-                                                    val parts = fechaOriginal.split("/")
-                                                    val dia = parts[0].padStart(2, '0')
-                                                    val mes = parts[1].padStart(2, '0')
-                                                    val anio = parts[2]
-                                                    val fecha = "${anio}-${mes}-${dia}"
-
-                                                    // Crear y guardar el nuevo gasto
-                                                    val nuevoGasto = Gasto(
-                                                        categoria = categoria,
-                                                        fecha = fecha,
-                                                        valor = valor,
-                                                        descripcion = descripcion,
-                                                        idUsuario = usuarioId
-                                                    )
-
-                                                    lifecycleScope.launch {
-                                                        withContext(Dispatchers.IO) {
-                                                            // Inserción del gasto solo si la validación pasó
-                                                            gastosViewModel.insertGasto(nuevoGasto)
-                                                        }
-                                                    }
-
-                                                    Toast.makeText(
-                                                        requireContext(),
-                                                        "Gasto agregado correctamente",
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-                                                    dialog.dismiss()
-                                                    verificarAlertasExcedidas()
                                                 }
-                                            } catch (e: NumberFormatException) {
-                                                // Manejar error si la cantidad no es válida
+
                                                 Toast.makeText(
                                                     requireContext(),
-                                                    "La cantidad ingresada no es válida",
+                                                    "Gasto agregado correctamente",
                                                     Toast.LENGTH_SHORT
                                                 ).show()
+                                                dialog.dismiss()
+                                                verificarAlertasExcedidas()
                                             }
-                                        } else {
-
+                                        } catch (e: NumberFormatException) {
+                                            // Manejar error si la cantidad no es válida
                                             Toast.makeText(
                                                 requireContext(),
-                                                "Por favor complete todos los campos",
+                                                "La cantidad ingresada no es válida",
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         }
+                                    } else {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "Por favor complete todos los campos",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
-                                    .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
-                                    .create()
+                                }
+                                .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+                                .create()
 
-                                dialog.show()
-                            }
+                            dialog.show()
                         }
+                    }
                 }
         }
     }
@@ -309,15 +305,9 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         }
     }
 
-
-
-
-
-
     @SuppressLint("MissingSuperCall")
     @Override
     fun onBackPressed() {
-        // No hacemos nada aquí para evitar que el usuario regrese a la actividad anterior
     }
 
     private fun showDatePickerDialog(editTextFecha: EditText) {
@@ -609,7 +599,6 @@ class DashboardFragment : Fragment(), OnItemClickListener {
 
 
     override fun onItemClick(gasto: Gasto) {
-
         val dialogView = layoutInflater.inflate(R.layout.dialog_modificar_gasto, null)
         val spinnerCategoria = dialogView.findViewById<Spinner>(R.id.spinnerCategoria)
         val items = resources.getStringArray(R.array.categorias).toList()
@@ -619,6 +608,8 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         val editTextFecha = dialogView.findViewById<EditText>(R.id.editTextFecha)
         val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
         val btnEliminar = dialogView.findViewById<Button>(R.id.btnEliminarGasto)
+
+        // Configurar los campos con los datos existentes del gasto
         editTextCantidad.setText(gasto.valor.toString())
         val parts = gasto.fecha.split("-")
         val fechaFormateada = "${parts[2]}/${parts[1]}/${parts[0]}"
@@ -641,40 +632,60 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                 val fechaOriginal = editTextFecha.text.toString()
                 val descripcion = editTextDescripcion.text.toString()
 
-                // Validar que los campos obligatorios no estén vacíos
+                // Validar campos obligatorios
                 if (categoria.isNotBlank() && cantidad.isNotBlank() && fechaOriginal.isNotBlank() && descripcion.isNotBlank()) {
                     try {
-                        // Validar que la cantidad sea un número válido
                         val valor = cantidad.toDouble()
 
-                        // Realizar la conversión de fecha y guardar los cambios
-                        val partes = fechaOriginal.split("/")
-                        val dia = partes[0].padStart(2, '0')
-                        val mes = partes[1].padStart(2, '0')
-                        val anio = partes[2]
-                        val fecha = "${anio}-${mes}-${dia}"
+                        // Comprobar saldo disponible antes de guardar
                         lifecycleScope.launch {
-                            withContext(Dispatchers.IO) {
-                                gastosViewModel.modificarGasto(
-                                    id = gasto.id,
-                                    categoria = categoria,
-                                    valor = valor,
-                                    descripcion = descripcion,
-                                    fecha = fecha
-                                )
+                            val saldoDisponible = withContext(Dispatchers.IO) {
+                                gastosViewModel.getDisponibleDirecto(gasto.idUsuario) // Reemplaza con el método correcto si es necesario
+                            }
+
+                            if (valor > saldoDisponible) {
+                                // Mostrar mensaje de error si el gasto excede el saldo disponible
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "El valor ingresado excede el saldo disponible.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } else {
+                                // Proceder a actualizar el gasto si el saldo es suficiente
+                                val partes = fechaOriginal.split("/")
+                                val dia = partes[0].padStart(2, '0')
+                                val mes = partes[1].padStart(2, '0')
+                                val anio = partes[2]
+                                val fecha = "${anio}-${mes}-${dia}"
+
+                                withContext(Dispatchers.IO) {
+                                    gastosViewModel.modificarGasto(
+                                        id = gasto.id,
+                                        categoria = categoria,
+                                        valor = valor,
+                                        descripcion = descripcion,
+                                        fecha = fecha
+                                    )
+                                }
+                                withContext(Dispatchers.Main) {
+                                    dialog.dismiss()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Gasto actualizado correctamente",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         }
-                        dialog.dismiss()
                     } catch (e: NumberFormatException) {
-                        // Manejar el caso en que la cantidad no sea un número válido
                         Toast.makeText(requireContext(), "La cantidad ingresada no es válida", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    // Mostrar un mensaje de error si algún campo obligatorio está vacío
                     Toast.makeText(requireContext(), "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
                 }
             }
-
             .setNegativeButton("Cancelar") { dialog, _ ->
                 dialog.dismiss()
             }
@@ -690,6 +701,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         }
         dialog.show()
     }
+
 
     fun cargarBarra(cantidad: Double, barra: View) {
         gastosViewModel.getValorGastosMes(usuarioId).observe(viewLifecycleOwner) { gastosMes ->

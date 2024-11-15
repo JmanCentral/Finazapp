@@ -17,6 +17,10 @@ class GastoRepository(private val gastoDao: GastoDao) {
 
     fun getDisponible(usuarioId: Long): LiveData<Double> = gastoDao.getDisponible(usuarioId)
 
+    suspend fun getDisponible1(usuarioId: Long): Double {
+        return gastoDao.getDisponible1(usuarioId) ?: 0.0
+    }
+
     fun getValorGastosMes(usuarioId: Long): LiveData<Double> = gastoDao.getValorGastosMes(usuarioId)
 
     fun getValorGastosMesCategoria(usuarioId: Long, categoria:String): LiveData<Double> = gastoDao.getValorGastosMesCategoria(usuarioId, categoria)
@@ -56,8 +60,8 @@ class GastoRepository(private val gastoDao: GastoDao) {
         return gastoDao.getPromedioGastosMes(usuarioId)
     }
 
-    fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>> {
-        return gastoDao.getGastosRecurrentes(usuarioId)
+    fun getDescripcionRecurrente(usuarioId: Long): LiveData<String?>{
+        return gastoDao.getDescripcionRecurrente(usuarioId)
     }
 
     fun getPorcentajesGastosSobreIngresos(usuarioId: Long): LiveData<Double> {

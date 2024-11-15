@@ -12,10 +12,7 @@ data class Usuario(
     val usuario: String,
     val contrasena: String,
     val nombres: String,
-    val apellidos: String,
-    val correo: String,
-    val telefono: String,
-    val documento: String
+    val apellidos: String
 )
 
 @Entity(tableName = "session")

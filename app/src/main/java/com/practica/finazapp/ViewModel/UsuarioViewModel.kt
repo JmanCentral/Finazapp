@@ -48,9 +48,9 @@ class UsuarioViewModel(application: Application) : AndroidViewModel(application)
         return repository.getUltimoUsuarioId()
     }
 
-    fun actualizarUsuario(usuarioId: Long, usuario: String, nombres: String, apellidos: String, documento: String, email: String, numeroTel: String) =
+    fun actualizarUsuario(usuarioId: Long, usuario: String, nombres: String, apellidos: String) =
         repository.actualizarUsuario(
-            usuarioId, usuario, nombres, apellidos, documento, email, numeroTel
+            usuarioId, usuario, nombres, apellidos
         )
 
 

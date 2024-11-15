@@ -88,18 +88,21 @@ class FragmentProyecciones : Fragment() {
 
         }
 
-        gastosViewModel.getPromedioGastosMes(usuarioId).observe(viewLifecycleOwner) { promedio ->
-            promedio?.let {
-                val textViewGastoPromedio = view?.findViewById<TextView>(R.id.textpromedio)
-                val mesActual = obtenerMesActual()
-                val mensaje = "El promedio de gastos del mes de $mesActual es de \$${
-                    String.format(
-                        "%.2f",
-                        it
-                    )
-                }"
-                textViewGastoPromedio?.text = mensaje
+        gastosViewModel.getGastosRecurrentes(usuarioId).observe(viewLifecycleOwner) { descripcionRecurrente ->
+
+            descripcionRecurrente?.let {descripcion ->
+                // Encuentra el TextView para mostrar el resultado
+                val textViewGastosRecurrentes = view?.findViewById<TextView>(R.id.textpromedio)
+
+                val mensaje = "Tienes un gasto recurrente en : $descripcion , revisa si es esencial ese gasto"
+
+                textViewGastosRecurrentes?.text = mensaje
+            } ?: run {
+                // Maneja el caso en que no haya datos recurrentes
+                val textViewGastosRecurrentes = view?.findViewById<TextView>(R.id.textpromedio)
+                textViewGastosRecurrentes?.text = "No se encontraron gastos recurrentes"
             }
+
         }
 
         gastosViewModel.getPorcentajesGastosSobreIngresos(usuarioId)

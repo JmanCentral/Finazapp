@@ -9,7 +9,7 @@ import com.practica.finazapp.Entidades.Ingreso
 import com.practica.finazapp.Entidades.Session
 import com.practica.finazapp.Entidades.Usuario
 
-@Database(entities = [Usuario::class, Ingreso::class, Gasto::class, Alerta::class,Session::class], version = 5)
+@Database(entities = [Usuario::class, Ingreso::class, Gasto::class, Alerta::class,Session::class], version = 6)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun usuarioDao(): UsuarioDao
     abstract fun ingresoDao(): IngresoDao

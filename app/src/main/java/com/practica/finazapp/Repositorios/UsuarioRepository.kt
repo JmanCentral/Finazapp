@@ -24,8 +24,8 @@ class UsuarioRepository(private val usuarioDao: UsuarioDao) {
         return usuarioDao.getUltimoUsuarioId()
     }
 
-    fun actualizarUsuario(usuarioId: Long, usuario: String, nombres: String, apellidos: String, documento: String, email: String, numeroTel: String) {
-        usuarioDao.actualizarUsuario(usuarioId= usuarioId, usuario=usuario, nombres=nombres, apellidos=apellidos, documento=documento, email=email, numeroTel=numeroTel)
+    fun actualizarUsuario(usuarioId: Long, usuario: String, nombres: String, apellidos: String) {
+        usuarioDao.actualizarUsuario(usuarioId= usuarioId, usuario=usuario, nombres=nombres, apellidos=apellidos)
     }
 
     fun eliminarUsuario(usuarioId: Long){

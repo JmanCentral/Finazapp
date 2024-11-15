@@ -38,7 +38,7 @@ class UsuarioRepositoryTest {
 
     @Test
     fun `insertUsuario should call insert method of usuarioDao`() = runBlocking {
-        val usuario = Usuario(usuario = "testUser", contrasena = "1234", nombres = "Test", apellidos = "User", correo = "test@example.com", telefono = "123456789", documento = "12345678")
+        val usuario = Usuario(usuario = "testUser", contrasena = "1234", nombres = "Test", apellidos = "User")
 
         // Llamar al método del repositorio
         repository.insertUsuario(usuario)
@@ -58,10 +58,10 @@ class UsuarioRepositoryTest {
 
     @Test
     fun `actualizarUsuario should call actualizarUsuario method of usuarioDao`() {
-        repository.actualizarUsuario(1L, "testUser", "Test", "User", "12345678", "test@example.com", "123456789")
+        repository.actualizarUsuario(1L, "testUser", "Test", "User")
 
         // Verificar que el método actualizarUsuario del DAO se llamó con los argumentos correctos
-        verify(usuarioDao).actualizarUsuario(1L, "testUser", "Test", "User", "12345678", "test@example.com", "123456789")
+        verify(usuarioDao).actualizarUsuario(1L, "testUser", "Test", "User")
     }
 
     @Test

@@ -28,8 +28,8 @@ interface UsuarioDao {
     @Query("SELECT id FROM Usuario ORDER BY id DESC LIMIT 1")
     fun getUltimoUsuarioId(): LiveData<Long>
 
-    @Query("UPDATE Usuario SET usuario = :usuario, nombres = :nombres, apellidos = :apellidos, documento = :documento, correo = :email, telefono = :numeroTel WHERE id = :usuarioId")
-    fun actualizarUsuario(usuarioId: Long, usuario: String, nombres: String, apellidos: String, documento: String, email: String, numeroTel: String)
+    @Query("UPDATE Usuario SET usuario = :usuario, nombres = :nombres, apellidos = :apellidos WHERE id = :usuarioId")
+    fun actualizarUsuario(usuarioId: Long, usuario: String, nombres: String, apellidos: String)
 
     @Query("DELETE FROM Usuario WHERE id = :usuarioId")
     fun eliminarUsuario(usuarioId: Long)
@@ -112,6 +112,9 @@ interface GastoDao {
     @Query("SELECT (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId)-(SELECT SUM(valor) FROM Gasto  WHERE idUsuario = :usuarioId)")
     fun getDisponible(usuarioId: Long): LiveData<Double>
 
+    @Query("SELECT (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId)-(SELECT SUM(valor) FROM Gasto WHERE idUsuario = :usuarioId)")
+    suspend fun getDisponible1(usuarioId: Long): Double
+
     @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId AND categoria = :categoria AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now')AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now')")
     fun getGastosMesCategoria(usuarioId: Long, categoria: String):LiveData<List<Gasto>>
 
@@ -148,8 +151,9 @@ interface GastoDao {
     @Query("SELECT AVG(valor) FROM Gasto WHERE idUsuario = :usuarioId AND SUBSTR(fecha, 1, INSTR(fecha, '-') - 1) = strftime('%Y', 'now') AND SUBSTR(fecha, INSTR(fecha, '-') + 1, 2) = strftime('%m', 'now')")
     fun getPromedioGastosMes(usuarioId: Long): LiveData<Double>
 
-    @Query("SELECT * FROM Gasto WHERE idUsuario = :usuarioId AND descripcion LIKE '%recurrente%'")
-    fun getGastosRecurrentes(usuarioId: Long): LiveData<List<Gasto>>
+    @Query("SELECT descripcion FROM Gasto WHERE idUsuario = :usuarioId GROUP BY descripcion ORDER BY COUNT(descripcion) DESC LIMIT 1")
+    fun getDescripcionRecurrente(usuarioId: Long): LiveData<String?>
+
 
     @Query("SELECT (SELECT SUM(valor) FROM Gasto WHERE idUsuario = :usuarioId) / (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId) * 100 AS porcentajeGastos")
     fun getPorcentajeGastosSobreIngresos(usuarioId: Long): LiveData<Double>
@@ -162,7 +166,6 @@ interface GastoDao {
 
     @Query("SELECT SUM(valor) / COUNT(DISTINCT fecha) AS gastoPromedioDiario FROM Gasto WHERE idUsuario = :usuarioId")
     fun getGastoPromedioDiarioTotal(usuarioId: Long): LiveData<Double>
-
 
 }
 

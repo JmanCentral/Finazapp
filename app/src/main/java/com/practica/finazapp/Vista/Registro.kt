@@ -79,10 +79,7 @@ class Registro : AppCompatActivity() {
                 nombres = nombres,
                 apellidos = apellidos,
                 usuario = usuario,
-                contrasena = contrasena,
-                correo = "",
-                telefono = "",
-                documento = ""
+                contrasena = contrasena
             )
 
 

@@ -40,6 +40,11 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
         return repository.getDisponible(usuarioId)
     }
 
+    suspend fun getDisponibleDirecto(usuarioId: Long): Double {
+        return repository.getDisponible1(usuarioId)
+    }
+
+
     fun getValorGastosMes(usuarioId: Long): LiveData<Double>{
         return repository.getValorGastosMes(usuarioId)
     }
@@ -84,6 +89,10 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
 
     fun getPromedioGastosMes(usuarioId: Long): LiveData<Double> {
         return repository.getPromedioGastosMes(usuarioId)
+    }
+
+    fun getGastosRecurrentes(usuarioId: Long): LiveData<String?> {
+        return repository.getDescripcionRecurrente(usuarioId)
     }
 
 

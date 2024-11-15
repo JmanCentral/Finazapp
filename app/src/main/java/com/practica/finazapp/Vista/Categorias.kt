@@ -34,15 +34,12 @@ class Categorias : AppCompatActivity() {
         ingresoViewModel = ViewModelProvider(this)[IngresoViewModel::class.java]
         gastosViewModel = ViewModelProvider(this)[GastosViewModel::class.java]
 
-        // Almacenar el ID del usuario en el SharedViewModel
         sharedViewModel.setUsuarioId(usuarioId)
 
-        // Referencia al botón para gestionar las categorías
         val btnCategoria = findViewById<Button>(R.id.btn_categorias)
 
-        // Al hacer clic en el botón, validar los gastos antes de redirigir
         val miFragment1 = FragmentCategorias()
-        // Agregar el fragmento al contenedor si no está ya agregado
+
         if (supportFragmentManager.findFragmentById(R.id.fragment_container1) == null) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container1, miFragment1)
