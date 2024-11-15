@@ -509,7 +509,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             in 1_000_000.0..1_500_000.0 -> {
                 when (categoria) {
                     "Gastos Hormiga" -> 5.0
-                    "Alimentos" -> 30.0  // Ajustado a un rango más razonable
+                    "Alimentos" -> 30.0
                     "Servicios" -> 20.0
                     "Transporte" -> 15.0
                     "Mercado" -> 25.0

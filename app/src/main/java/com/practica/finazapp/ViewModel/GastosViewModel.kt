@@ -64,9 +64,6 @@ class GastosViewModel(application: Application) :AndroidViewModel(application) {
         return repository.getGastosPorFechas(idUsuario,fechaInf,fechaSup)
     }
 
-    fun getGastosOrdenados(usuarioId: Long): LiveData<List<Gasto>> {
-        return repository.getGastosOrdenados(usuarioId)
-    }
 
     fun getGastosOrdenadosAsc(usuarioId: Long): LiveData<List<Gasto>> {
         return repository.getGastosOrdenadosAsc(usuarioId)

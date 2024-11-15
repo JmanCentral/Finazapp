@@ -52,10 +52,10 @@ class Dashboard : AppCompatActivity() {
             R.id.nav_dashboard, R.id.nav_perfil, R.id.nav_ingresos, R.id.nav_reporte
         ), drawerLayout)
 
-        // Obtener el usuario_id pasado desde MainActivity o LoginActivity
+
         val usuarioId: Long = intent.getLongExtra("usuario_id", -1)
         if (usuarioId == -1L) {
-            // Si no se recibe un usuario_id válido, redirigir al login
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -70,7 +70,6 @@ class Dashboard : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Inicializar la base de datos y ViewModel
         db = AppDatabase.getDatabase(applicationContext)
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 

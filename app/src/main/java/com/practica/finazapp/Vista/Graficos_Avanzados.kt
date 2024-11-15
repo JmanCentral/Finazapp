@@ -115,9 +115,9 @@ class Graficos_Avanzados : Fragment() {
 
 
     private fun cargarGraficoAvanzado(datos: Map<String, Float>) {
+
         val combinedChart = binding.dona2
 
-        val barEntriesList = mutableListOf<BarEntry>()
         val categories = mutableListOf<String>()
         var index = 0f
 
@@ -168,14 +168,21 @@ class Graficos_Avanzados : Fragment() {
         xAxis.spaceMax = 0.5f
         xAxis.setDrawGridLines(false)
 
-        // Cambiar el color del texto y del eje X
-        xAxis.textColor = Color.WHITE // Cambiar el color del texto del eje X
-        xAxis.textSize = 12f
-        xAxis.axisLineColor = Color.BLUE // Cambiar el color de la línea del eje X
 
-        xAxis.axisMinimum = -0.5f
-        xAxis.axisMaximum = categories.size - 0.5f
+        xAxis.setDrawLabels(false)
+        xAxis.setDrawAxisLine(false)
+
+        val yAxis = combinedChart.axisLeft
+        yAxis.axisLineColor = Color.WHITE
+        yAxis.textColor = Color.WHITE
+
+
+        val yAxisRight = combinedChart.axisRight
+        yAxisRight.isEnabled = false
+
         combinedChart.data = combinedData
+        combinedChart.description.isEnabled = false
+
 
         // Configurar la leyenda
         val legend = combinedChart.legend
@@ -185,13 +192,8 @@ class Graficos_Avanzados : Fragment() {
         legend.textColor = Color.WHITE
         legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
         legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
-        legend.orientation = Legend.LegendOrientation.HORIZONTAL
         legend.setDrawInside(false)
 
-        // Configurar el eje Y (si es necesario)
-        val yAxis = combinedChart.axisLeft
-        yAxis.axisLineColor = Color.WHITE // Cambiar el color de la línea del eje Y
-        yAxis.textColor = Color.WHITE // Cambiar el color del texto del eje Y
 
         combinedChart.animateY(1000)
         combinedChart.invalidate()
@@ -219,7 +221,7 @@ class Graficos_Avanzados : Fragment() {
 
         val radarData = RadarData(radarDataSet)
         radarChart.data = radarData
-
+        radarChart.description.isEnabled = false
         // Configurar el eje X
         val xAxis = radarChart.xAxis
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
@@ -238,6 +240,7 @@ class Graficos_Avanzados : Fragment() {
 
         // Actualizar el gráfico
         radarChart.invalidate()
+
     }
 
 
@@ -279,6 +282,7 @@ class Graficos_Avanzados : Fragment() {
                 // Asignar datos al gráfico
                 lineChart.data = lineData
 
+                lineChart.description.isEnabled = false
                 // Animación
                 lineChart.animateXY(1000, 1000)  // Animar en X y Y (1 segundo)
 
@@ -305,6 +309,8 @@ class Graficos_Avanzados : Fragment() {
 
                 // Refrescar el gráfico
                 lineChart.invalidate()
+
+
 
         }
     }

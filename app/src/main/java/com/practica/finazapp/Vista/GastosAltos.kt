@@ -62,7 +62,7 @@ class GastosAltos : Fragment() {
     }
 
     private fun cargarGastosAscendente() {
-        // Observar los gastos del ViewModel y actualizar el adaptador
+
         gastosViewModel.getGastosOrdenadosAsc(usuarioId).observe(viewLifecycleOwner) { gastos ->
             if (gastos != null) {
                 adapter = GastoListaAdapter(gastos)
