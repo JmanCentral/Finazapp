@@ -66,10 +66,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Gráfico Spider"
+                    android:text="Gráfico radar"
                     android:textColor="#ffff"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
                 <com.github.mikephil.charting.charts.RadarChart
                     android:id="@+id/radarChart"

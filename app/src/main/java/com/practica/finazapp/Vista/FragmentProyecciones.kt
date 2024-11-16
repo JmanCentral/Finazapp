@@ -94,7 +94,7 @@ class FragmentProyecciones : Fragment() {
                 // Encuentra el TextView para mostrar el resultado
                 val textViewGastosRecurrentes = view?.findViewById<TextView>(R.id.textpromedio)
 
-                val mensaje = "Tienes un gasto recurrente en : $descripcion , revisa si es esencial ese gasto"
+                val mensaje = "Tienes un gasto recurrente en : $descripcion revisa si es esencial ese gasto"
 
                 textViewGastosRecurrentes?.text = mensaje
             } ?: run {
@@ -178,15 +178,8 @@ class FragmentProyecciones : Fragment() {
     fun mostrarRecomendacion(categoria: String, totalValor: Double) {
 
         val textViewRecomendacion = view?.findViewById<TextView>(R.id.textRecomendacion)
-        val mensaje =  "Revisa tus gastos en $categoria, ya que suman $totalValor"
+        val mensaje =  "Revisa tus gastos en $categoria, ya que suman $totalValor y es la categoria que más gasta"
         textViewRecomendacion?.text = mensaje
 
-    }
-
-
-
-    fun obtenerMesActual(): String {
-        val formatoMes = SimpleDateFormat("MMMM", Locale.getDefault())
-        return formatoMes.format(Date())
     }
 }

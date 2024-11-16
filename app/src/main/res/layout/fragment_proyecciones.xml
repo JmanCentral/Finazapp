@@ -245,7 +245,7 @@
                         android:layout_weight="1"
                         android:contentDescription="Imagen de gasto"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/recomendacion" />
+                        android:src="@drawable/medicion" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

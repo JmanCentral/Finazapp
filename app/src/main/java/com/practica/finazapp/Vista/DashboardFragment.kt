@@ -601,6 +601,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
     override fun onItemClick(gasto: Gasto) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_modificar_gasto, null)
         val spinnerCategoria = dialogView.findViewById<Spinner>(R.id.spinnerCategoria)
+        spinnerCategoria.isEnabled = false
         val items = resources.getStringArray(R.array.categorias).toList()
         val adapter = CustomSpinnerAdapter(requireContext(), items)
         spinnerCategoria.adapter = adapter
