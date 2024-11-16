@@ -61,6 +61,8 @@
         android:layout_marginTop="8dp"
         android:id="@+id/btnEliminarGasto"
         style="@style/EstiloBordeVerde"
+        android:background="#001A41"
+        android:textColor="@color/blanco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"

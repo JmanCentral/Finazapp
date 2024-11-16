@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Vista.FragmentProyecciones">
 
-    <!-- Encabezado fuera del ScrollView -->
     <TextView
         android:id="@+id/Proyecciones"
         android:layout_width="wrap_content"
