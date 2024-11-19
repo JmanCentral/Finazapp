@@ -15,7 +15,6 @@
         android:gravity="center"
         />
 
-
     <EditText
         android:id="@+id/editTextFecha"
         android:layout_width="match_parent"

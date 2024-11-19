@@ -109,8 +109,9 @@ interface GastoDao {
     @Insert
     fun insert(gasto: Gasto)
 
-    @Query("SELECT (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId)-(SELECT SUM(valor) FROM Gasto  WHERE idUsuario = :usuarioId)")
+    @Query("SELECT (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId) - IFNULL((SELECT SUM(valor) FROM Gasto WHERE idUsuario = :usuarioId), 0) FROM Ingreso WHERE idUsuario = :usuarioId")
     fun getDisponible(usuarioId: Long): LiveData<Double>
+
 
     @Query("SELECT (SELECT SUM(valor) FROM Ingreso WHERE idUsuario = :usuarioId)-(SELECT SUM(valor) FROM Gasto WHERE idUsuario = :usuarioId)")
     suspend fun getDisponible1(usuarioId: Long): Double
